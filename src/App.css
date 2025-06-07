@@ -40,3 +40,9 @@
 .read-the-docs {
   color: #888;
 }
+
+/* From here, custom css desings */
+.subtitle {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 900;
+}
