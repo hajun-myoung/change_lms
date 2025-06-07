@@ -32,31 +32,40 @@ export default function SigninPage() {
 
   return (
     <Box sx={{ maxWidth: 400, mx: "auto" }}>
-      <Typography className="subtitle">
-        높은뜻 정의교회 2025 청년부 여름수련회
-      </Typography>
+      <Typography className="subtitle">높은뜻 정의교회</Typography>
+      <Typography className="subtitle">2025 청년부 여름수련회</Typography>
       <Typography className="subtitle">"CHANGE"</Typography>
       <img src={viteLogo} className="logo" alt="Vite logo" />
-      <TextField
-        label="학번"
-        fullWidth
-        margin="normal"
-        value={studentId}
-        onChange={(e) => setStudentId(e.target.value)}
-      />
-      {error && (
-        <Typography color="error" mt={1}>
-          {error}
-        </Typography>
-      )}
-      <Button
-        variant="contained"
-        fullWidth
-        sx={{ mt: 2 }}
-        onClick={handleSignin}
-      >
-        액팅 프로그램 참여하기
-      </Button>
+      <Box sx={{ paddingLeft: 10, paddingRight: 10, boxSizing: "border-box" }}>
+        <TextField
+          label="학번"
+          fullWidth
+          margin="normal"
+          value={studentId}
+          onChange={(e) => setStudentId(e.target.value)}
+          variant="standard"
+        />
+        {error && (
+          <Typography color="error" mt={1}>
+            {error}
+          </Typography>
+        )}
+        <Button
+          variant="contained"
+          fullWidth
+          sx={{
+            mt: 2,
+            bgcolor: studentId ? "error.main" : "grey.400",
+            color: studentId ? "common.white" : "grey.700",
+            "&:hover": {
+              bgcolor: studentId ? "error.dark" : "grey.500",
+            },
+          }}
+          onClick={handleSignin}
+        >
+          로그인
+        </Button>
+      </Box>
     </Box>
   );
 }
