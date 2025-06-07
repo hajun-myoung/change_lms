@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
 }
 
@@ -42,7 +42,35 @@
 }
 
 /* From here, custom css desings */
-.subtitle {
-  font-family: "Times New Roman", Times, serif;
-  font-weight: 900;
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  padding-top: 5px;
+  box-sizing: border-box;
+}
+
+.header {
+  flex: 0 0 auto; /* 고정 높이 */
+  height: 60px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-left {
+  display: flex;
+}
+
+.gap5 {
+  gap: 5px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.fullHeight {
+  height: 100%;
 }
