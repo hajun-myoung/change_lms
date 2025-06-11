@@ -116,3 +116,47 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.external_description_box {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  white-space: nowrap;
+}
+
+.external-linkbox {
+  flex: 1; /* shrink 없음 + 고정 width */
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.external-icon {
+  width: 10vw;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.external-icon img,
+.external-icon svg,
+.external-icon .emoji-box {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.emoji-box {
+  width: 10vw;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8vw;
+  line-height: 1;
+  text-align: center;
+}

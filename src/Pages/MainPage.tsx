@@ -6,6 +6,12 @@ import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 
+import churchLogo from "../assets/church-logo.png";
+import youtubeLogo from "../assets/youtube.png";
+
+import DocumentScannerIcon from "@mui/icons-material/DocumentScanner";
+import ScheduleIcon from "@mui/icons-material/Schedule";
+
 export default function MainPage() {
   const [announcements, setAnnouncements] = useState<Array<any>>(null);
 
@@ -72,6 +78,62 @@ export default function MainPage() {
             <Typography>No Announcement</Typography>
           </Box>
         )}
+      </Box>
+      {/* 외부링크 연결 */}
+      <Box className="fullWidth flex-left horizontal_overflow" sx={{ mt: 3 }}>
+        <Box className="external-linkbox">
+          <Box className="external-icon centeralize">
+            <img
+              className="external-icon-image"
+              src={churchLogo}
+              alt="church logo"
+            />
+          </Box>
+          <Box className="external_description_box">
+            <Typography variant="blacksmall">교회</Typography>
+            <Typography variant="blacksmall">홈</Typography>
+          </Box>
+        </Box>
+        <Box className="external-linkbox">
+          <Box className="external-icon centeralize">
+            <img
+              className="external-icon-image"
+              src={youtubeLogo}
+              alt="youtube logo"
+            />
+          </Box>
+          <Box className="external_description_box">
+            <Typography variant="blacksmall">찬양</Typography>
+            <Typography variant="blacksmall">콘티</Typography>
+          </Box>
+        </Box>
+        <Box className="external-linkbox">
+          <Box className="external-icon centeralize">
+            <DocumentScannerIcon sx={{ width: "100%", height: "100%" }} />
+          </Box>
+          <Box className="external_description_box">
+            <Typography variant="blacksmall">수련회</Typography>
+            <Typography variant="blacksmall">안내문</Typography>
+          </Box>
+        </Box>
+        <Box className="external-linkbox">
+          <Box className="external-icon centeralize">
+            <Box className="emoji-box">🙏</Box>
+          </Box>
+          <Box className="external_description_box">
+            <Typography variant="blacksmall">기도</Typography>
+            <Typography variant="blacksmall">제목</Typography>
+          </Box>
+        </Box>
+        <Box className="external-linkbox">
+          <Box className="external-icon centeralize">
+            <ScheduleIcon sx={{ width: "100%", height: "100%" }} />
+          </Box>
+          <Box className="external_description_box">
+            <Typography variant="blacksmall">타임</Typography>
+            <Typography variant="blacksmall">테이블</Typography>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

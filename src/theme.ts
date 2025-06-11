@@ -4,11 +4,13 @@ declare module "@mui/material/styles" {
   interface TypographyVariants {
     announcePreviewTitle: React.CSSProperties;
     announcePreviewContent: React.CSSProperties;
+    blacksmall: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
     announcePreviewTitle?: React.CSSProperties;
     announcePreviewContent: React.CSSProperties;
+    blacksmall: React.CSSProperties;
   }
 }
 
@@ -16,6 +18,7 @@ declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     announcePreviewTitle: true;
     announcePreviewContent: true;
+    blacksmall: true;
   }
 }
 
@@ -49,6 +52,12 @@ const theme = createTheme({
       lineClamp: 2,
       boxOrient: "vertical",
       display: "-webkit-box",
+    },
+    blacksmall: {
+      fontSize: "14px",
+      color: "#000",
+      fontFamily: "Pretendard, sans-serif",
+      lineHeight: "1.1",
     },
   },
 });
