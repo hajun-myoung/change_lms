@@ -3,6 +3,13 @@
   margin: 0 auto;
   /* padding: 2rem; */
   text-align: center;
+  background: linear-gradient(
+    to bottom,
+    white 0%,
+    white 40%,
+    rgb(245, 245, 245) 60%,
+    rgb(245, 245, 245) 100% /* 이후 배경 유지 */
+  );
 }
 
 .logo {
@@ -73,4 +80,39 @@
 
 .fullHeight {
   height: 100%;
+}
+
+.announcementArea {
+  height: 17vh;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 8px;
+  scroll-snap-type: x mandatory; /* 있으면 부드러운 스냅 효과 */
+}
+
+.announcementDocument {
+  width: 200px;
+
+  flex-shrink: 0;
+  height: 100%;
+  background-color: rgb(255, 242, 241);
+  border: 1px rgb(240, 240, 240) solid;
+  box-sizing: border-box;
+
+  border-radius: 20px 20px 20px 20px;
+  padding: 10px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  white-space: pre-line;
+
+  overflow: hidden;
+}
+
+.centeralize {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
