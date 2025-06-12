@@ -18,10 +18,36 @@ import ScheduleIcon from "@mui/icons-material/Schedule";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
 import SchoolIcon from "@mui/icons-material/School";
 
+// src/types/firestore.ts
+import { Timestamp } from "firebase/firestore";
+
+export interface Announcement {
+  title: string;
+  content: string;
+  active: boolean;
+  created_at: Timestamp;
+  is_updated: boolean;
+}
+
+export interface Pray {
+  author_id: string;
+  title: string;
+  content: string;
+  created_at: Timestamp;
+}
+
+export interface User {
+  student_id: string;
+  name: string;
+  group_id: number;
+  is_admin: boolean;
+  is_leader: boolean;
+}
+
 export default function MainPage() {
-  const [announcements, setAnnouncements] = useState<Array<any>>(null);
-  const [prays, setPrays] = useState<Array<any>>(null);
-  const [users, setUsers] = useState<Array<any>>(null);
+  const [announcements, setAnnouncements] = useState<Array<Announcement>>([]);
+  const [prays, setPrays] = useState<Array<Pray>>([]);
+  const [users, setUsers] = useState<Array<User>>([]);
 
   useEffect(() => {
     const fetchAssignments = async () => {
@@ -33,7 +59,9 @@ export default function MainPage() {
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
-        const docs = querySnapshot.docs.map((doc) => doc.data());
+        const docs = querySnapshot.docs.map(
+          (doc) => doc.data() as Announcement
+        );
         setAnnouncements(docs);
       } else {
         console.log("[Warning]No accouncements has been queried");
@@ -43,7 +71,7 @@ export default function MainPage() {
       const querySnapshot2 = await getDocs(q2);
 
       if (!querySnapshot2.empty) {
-        const prays = querySnapshot2.docs.map((pray) => pray.data());
+        const prays = querySnapshot2.docs.map((pray) => pray.data() as Pray);
         setPrays(prays);
       } else {
         console.log("[Warning]No Prays");
@@ -52,7 +80,7 @@ export default function MainPage() {
       const usersQuery = query(collection(db, "users"));
       const usersSnapshot = await getDocs(usersQuery);
       if (!usersSnapshot.empty) {
-        const users = usersSnapshot.docs.map((user) => user.data());
+        const users = usersSnapshot.docs.map((user) => user.data() as User);
         setUsers(users);
       }
     };
@@ -288,7 +316,7 @@ export default function MainPage() {
                     {
                       users.filter(
                         (user) => user.student_id == pray.author_id
-                      )[0].name
+                      )[0]?.name
                     }
                   </Typography>
                 </Box>
