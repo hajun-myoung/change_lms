@@ -160,7 +160,12 @@ export default function MainPage() {
       </Box>
       {/* 외부링크 연결 */}
       <Box className="fullWidth flex-left horizontal_overflow" sx={{ mt: 3 }}>
-        <Box className="external-linkbox">
+        <Box
+          className="external-linkbox"
+          onClick={() => {
+            window.open("http://www.jeongeui.com", "_blank");
+          }}
+        >
           <Box className="external-icon centeralize">
             <img
               className="external-icon-image"
@@ -173,7 +178,12 @@ export default function MainPage() {
             <Typography variant="blacksmall">홈</Typography>
           </Box>
         </Box>
-        <Box className="external-linkbox">
+        <Box
+          className="external-linkbox"
+          onClick={() => {
+            window.open("https://www.youtube.com", "_blank");
+          }}
+        >
           <Box className="external-icon centeralize">
             <img
               className="external-icon-image"
@@ -186,7 +196,12 @@ export default function MainPage() {
             <Typography variant="blacksmall">콘티</Typography>
           </Box>
         </Box>
-        <Box className="external-linkbox">
+        <Box
+          className="external-linkbox"
+          onClick={() => {
+            alert("아직 준비되지 않은 기능입니다");
+          }}
+        >
           <Box className="external-icon centeralize">
             <Box className="emoji-box">🙏</Box>
           </Box>
@@ -195,7 +210,12 @@ export default function MainPage() {
             <Typography variant="blacksmall">제목</Typography>
           </Box>
         </Box>
-        <Box className="external-linkbox">
+        <Box
+          className="external-linkbox"
+          onClick={() => {
+            window.open("https://map.naver.com", "_blank");
+          }}
+        >
           <Box className="external-icon centeralize">
             <img
               className="external-icon-image"
@@ -208,7 +228,12 @@ export default function MainPage() {
             <Typography variant="blacksmall">지도</Typography>
           </Box>
         </Box>
-        <Box className="external-linkbox">
+        <Box
+          className="external-linkbox"
+          onClick={() => {
+            alert("아직 준비되지 않은 기능입니다");
+          }}
+        >
           <Box className="external-icon centeralize">
             <Box className="emoji-box">🎁</Box>
           </Box>
@@ -220,7 +245,12 @@ export default function MainPage() {
       </Box>
       {/* 중간 네비게이션 2행 */}
       <Box className="fullWidth flex-left horizontal_overflow" sx={{ mt: 3 }}>
-        <Box className="external-linkbox">
+        <Box
+          className="external-linkbox"
+          onClick={() => {
+            alert("아직 준비되지 않은 기능입니다");
+          }}
+        >
           <Box className="external-icon centeralize">
             <Diversity3Icon />
           </Box>
@@ -229,7 +259,12 @@ export default function MainPage() {
             <Typography variant="blacksmall">보기</Typography>
           </Box>
         </Box>
-        <Box className="external-linkbox">
+        <Box
+          className="external-linkbox"
+          onClick={() => {
+            alert("아직 준비되지 않은 기능입니다");
+          }}
+        >
           <Box className="external-icon centeralize">
             <SchoolIcon />
           </Box>
@@ -238,7 +273,12 @@ export default function MainPage() {
             <Typography variant="blacksmall">신청</Typography>
           </Box>
         </Box>
-        <Box className="external-linkbox">
+        <Box
+          className="external-linkbox"
+          onClick={() => {
+            alert("아직 준비되지 않은 기능입니다");
+          }}
+        >
           <Box className="external-icon centeralize">
             <ClassIcon />
           </Box>
@@ -247,7 +287,12 @@ export default function MainPage() {
             <Typography variant="blacksmall">버스</Typography>
           </Box>
         </Box>
-        <Box className="external-linkbox">
+        <Box
+          className="external-linkbox"
+          onClick={() => {
+            alert("아직 준비되지 않은 기능입니다");
+          }}
+        >
           <Box className="external-icon centeralize">
             <DocumentScannerIcon />
           </Box>
@@ -256,7 +301,12 @@ export default function MainPage() {
             <Typography variant="blacksmall">워크북</Typography>
           </Box>
         </Box>
-        <Box className="external-linkbox">
+        <Box
+          className="external-linkbox"
+          onClick={() => {
+            alert("아직 준비되지 않은 기능입니다");
+          }}
+        >
           <Box className="external-icon centeralize">
             <ScheduleIcon />
           </Box>
