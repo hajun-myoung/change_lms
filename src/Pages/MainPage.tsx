@@ -20,6 +20,8 @@ import SchoolIcon from "@mui/icons-material/School";
 
 export default function MainPage() {
   const [announcements, setAnnouncements] = useState<Array<any>>(null);
+  const [prays, setPrays] = useState<Array<any>>(null);
+  const [users, setUsers] = useState<Array<any>>(null);
 
   useEffect(() => {
     const fetchAssignments = async () => {
@@ -36,14 +38,27 @@ export default function MainPage() {
       } else {
         console.log("[Warning]No accouncements has been queried");
       }
+
+      const q2 = query(collection(db, "pray_board"));
+      const querySnapshot2 = await getDocs(q2);
+
+      if (!querySnapshot2.empty) {
+        const prays = querySnapshot2.docs.map((pray) => pray.data());
+        setPrays(prays);
+      } else {
+        console.log("[Warning]No Prays");
+      }
+
+      const usersQuery = query(collection(db, "users"));
+      const usersSnapshot = await getDocs(usersQuery);
+      if (!usersSnapshot.empty) {
+        const users = usersSnapshot.docs.map((user) => user.data());
+        setUsers(users);
+      }
     };
 
     fetchAssignments();
   }, []);
-
-  useEffect(() => {
-    console.log(announcements);
-  }, [announcements]);
 
   return (
     <Box className="wrapper">
@@ -224,6 +239,67 @@ export default function MainPage() {
             style={{ width: "130%" }}
           />
         </Box>
+      </Box>
+      {/* 게시판 영역: 기도제목 */}
+      <Box
+        className="flex-left gap5"
+        sx={{
+          padding: "10px",
+          paddingLeft: 0,
+          marginTop: 3,
+          justifyContent: "space-between",
+          alignItems: "flex-end",
+        }}
+      >
+        <Typography variant="body1">🙏 기도제목</Typography>
+        <Typography variant="toDetail">more {">"}</Typography>
+      </Box>
+      <Box className="boardPreview">
+        {prays ? (
+          prays.map((pray) => (
+            <Box
+              key={`pray_${pray.created_at}`}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Box sx={{ marginRight: 1 }}>
+                  <Typography variant="boardPreview_title">
+                    {pray.title}
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    maxWidth: "50%",
+                  }}
+                >
+                  <Typography variant="boardPreview_detail">
+                    {pray.content}
+                  </Typography>
+                </Box>
+              </Box>
+              {users && (
+                <Box sx={{ minWidth: "32px" }}>
+                  <Typography variant="boardPreview_author">
+                    {
+                      users.filter(
+                        (user) => user.student_id == pray.author_id
+                      )[0].name
+                    }
+                  </Typography>
+                </Box>
+              )}
+            </Box>
+          ))
+        ) : (
+          <Box className="fully_centeralize fullSize" sx={{ height: "120px" }}>
+            <Typography>No Prays</Typography>
+          </Box>
+        )}
       </Box>
     </Box>
   );

@@ -7,6 +7,10 @@ declare module "@mui/material/styles" {
     blacksmall: React.CSSProperties;
     ad_title: React.CSSProperties;
     ad_description: React.CSSProperties;
+    toDetail: React.CSSProperties;
+    boardPreview_title: React.CSSProperties;
+    boardPreview_detail: React.CSSProperties;
+    boardPreview_author: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -15,6 +19,10 @@ declare module "@mui/material/styles" {
     blacksmall: React.CSSProperties;
     ad_title: React.CSSProperties;
     ad_description: React.CSSProperties;
+    toDetail: React.CSSProperties;
+    boardPreview_title: React.CSSProperties;
+    boardPreview_detail: React.CSSProperties;
+    boardPreview_author: React.CSSProperties;
   }
 }
 
@@ -25,6 +33,10 @@ declare module "@mui/material/Typography" {
     blacksmall: true;
     ad_title: true;
     ad_description: true;
+    toDetail: true;
+    boardPreview_title: true;
+    boardPreview_detail: true;
+    boardPreview_author: true;
   }
 }
 
@@ -65,8 +77,32 @@ const theme = createTheme({
       fontFamily: "Pretendard, sans-serif",
       lineHeight: "1.1",
     },
-    ad_title: { fontSize: "18px", fontWeight: 900 },
-    ad_description: { fontSize: "14px", fontWeight: 600 },
+    ad_title: { fontSize: "17.5px", fontWeight: 900 },
+    ad_description: { fontSize: "11.7px", fontWeight: 600 },
+    toDetail: {
+      fontSize: "12px",
+      color: "grey",
+      fontWeight: "bold",
+    },
+    boardPreview_title: {
+      fontSize: "14px",
+    },
+    boardPreview_detail: {
+      fontSize: "12px",
+      color: "gray",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      WebkitLineClamp: 1,
+      WebkitBoxOrient: "vertical",
+      lineClamp: 1,
+      boxOrient: "vertical",
+      display: "-webkit-box",
+    },
+    boardPreview_author: {
+      fontSize: "12px",
+      color: "gray",
+      overflow: "hidden",
+    },
   },
 });
 
