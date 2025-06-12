@@ -31,7 +31,7 @@ export default function SigninPage() {
   };
 
   return (
-    <Box className="wrapper centeralize">
+    <Box className="wrapper centeralize" sx={{ height: "100vh" }}>
       <Typography className="subtitle">높은뜻 정의교회</Typography>
       <Typography className="subtitle">2025 청년부 여름수련회</Typography>
       <Typography className="subtitle">"CHANGE"</Typography>

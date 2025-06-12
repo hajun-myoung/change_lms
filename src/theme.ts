@@ -5,12 +5,16 @@ declare module "@mui/material/styles" {
     announcePreviewTitle: React.CSSProperties;
     announcePreviewContent: React.CSSProperties;
     blacksmall: React.CSSProperties;
+    ad_title: React.CSSProperties;
+    ad_description: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
     announcePreviewTitle?: React.CSSProperties;
     announcePreviewContent: React.CSSProperties;
     blacksmall: React.CSSProperties;
+    ad_title: React.CSSProperties;
+    ad_description: React.CSSProperties;
   }
 }
 
@@ -19,6 +23,8 @@ declare module "@mui/material/Typography" {
     announcePreviewTitle: true;
     announcePreviewContent: true;
     blacksmall: true;
+    ad_title: true;
+    ad_description: true;
   }
 }
 
@@ -59,6 +65,8 @@ const theme = createTheme({
       fontFamily: "Pretendard, sans-serif",
       lineHeight: "1.1",
     },
+    ad_title: { fontSize: "18px", fontWeight: 900 },
+    ad_description: { fontSize: "14px", fontWeight: 600 },
   },
 });
 

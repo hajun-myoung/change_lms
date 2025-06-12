@@ -8,6 +8,8 @@ import { Button } from "@mui/material";
 
 import churchLogo from "../assets/church-logo.png";
 import youtubeLogo from "../assets/youtube.png";
+import worldMap from "../assets/world_map.png";
+import leaderVoting from "../assets/vote.png";
 
 import DocumentScannerIcon from "@mui/icons-material/DocumentScanner";
 import ScheduleIcon from "@mui/icons-material/Schedule";
@@ -113,7 +115,7 @@ export default function MainPage() {
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">수련회</Typography>
-            <Typography variant="blacksmall">안내문</Typography>
+            <Typography variant="blacksmall">워크북</Typography>
           </Box>
         </Box>
         <Box className="external-linkbox">
@@ -133,6 +135,38 @@ export default function MainPage() {
             <Typography variant="blacksmall">타임</Typography>
             <Typography variant="blacksmall">테이블</Typography>
           </Box>
+        </Box>
+      </Box>
+      {/* 광고 영역 */}
+      <Box className="fullWidth advertise">
+        <Box className="advertise_content">
+          <Typography variant="ad_title">올해는 나도 선교사!?</Typography>
+          <Typography variant="ad_description">
+            2025 아웃리치: 유니블캠프 / 샘물 호스피스
+          </Typography>
+        </Box>
+        <Box className="advertise_image-wrapper">
+          <img src={worldMap} className="advertise_image" />
+        </Box>
+      </Box>
+      <Box
+        className="fullWidth advertise"
+        sx={{ marginTop: 1, backgroundColor: "rgb(210, 243, 253)" }}
+      >
+        <Box className="advertise_content">
+          <Typography variant="ad_title">
+            쟤가 저기 있사오니 쟤를 시키소서
+          </Typography>
+          <Typography variant="ad_description">
+            2026년도 총무 / 리더 받습니다
+          </Typography>
+        </Box>
+        <Box className="advertise_image-wrapper">
+          <img
+            src={leaderVoting}
+            className="advertise_image"
+            style={{ width: "130%" }}
+          />
         </Box>
       </Box>
     </Box>
