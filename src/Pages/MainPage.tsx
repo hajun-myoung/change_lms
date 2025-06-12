@@ -1,11 +1,16 @@
+// import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Header from "../Components/Header";
 import { db } from "../firebase";
 import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { Button } from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 import churchLogo from "../assets/church-logo.png";
 import youtubeLogo from "../assets/youtube.png";
@@ -21,6 +26,8 @@ import SchoolIcon from "@mui/icons-material/School";
 
 import type { Announcement, Pray, User, LoadingState } from "../types/MainPage";
 
+import { TimetableContent } from "../Components/TimetableContent";
+
 export default function MainPage() {
   const [announcements, setAnnouncements] = useState<Array<Announcement>>([]);
   const [prays, setPrays] = useState<Array<Pray>>([]);
@@ -30,6 +37,9 @@ export default function MainPage() {
     prayBoard: true,
     users: true,
   });
+  const [timetableOpen, setTimetableOpen] = useState(false);
+
+  // const navigation = useNavigate();
 
   useEffect(() => {
     const fetchAssignments = async () => {
@@ -274,7 +284,7 @@ export default function MainPage() {
         <Box
           className="external-linkbox"
           onClick={() => {
-            alert("아직 준비되지 않은 기능입니다");
+            setTimetableOpen(true);
           }}
         >
           <Box className="external-icon centeralize">
@@ -391,6 +401,33 @@ export default function MainPage() {
           )}
         </Box>
       )}
+
+      {/* 타임테이블 모달창 */}
+      <Dialog
+        open={timetableOpen}
+        onClose={() => setTimetableOpen(false)}
+        fullWidth
+        maxWidth="sm"
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }}>
+          수련회 타임테이블
+          <IconButton
+            aria-label="close"
+            onClick={() => setTimetableOpen(false)}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <Box sx={{ p: 2 }}>
+          <TimetableContent />
+        </Box>
+      </Dialog>
     </Box>
   );
 }

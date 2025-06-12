@@ -6,6 +6,7 @@ import { AuthProvider } from "./Contexts/AuthContexts";
 import ProtectedRouter from "./Components/ProtectedRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
+// import TimetablePage from "./Pages/TimetablePage";
 
 function App() {
   return (
@@ -22,6 +23,14 @@ function App() {
                 </ProtectedRouter>
               }
             />
+            {/* <Route
+              path="/timetable"
+              element={
+                <ProtectedRouter>
+                  <TimetablePage />
+                </ProtectedRouter>
+              }
+            /> */}
           </Routes>
         </Router>
       </ThemeProvider>
