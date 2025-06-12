@@ -10,9 +10,13 @@ import churchLogo from "../assets/church-logo.png";
 import youtubeLogo from "../assets/youtube.png";
 import worldMap from "../assets/world_map.png";
 import leaderVoting from "../assets/vote.png";
+import mapIcon from "../assets/naver_map.png";
+import ClassIcon from "@mui/icons-material/Class";
 
 import DocumentScannerIcon from "@mui/icons-material/DocumentScanner";
 import ScheduleIcon from "@mui/icons-material/Schedule";
+import Diversity3Icon from "@mui/icons-material/Diversity3";
+import SchoolIcon from "@mui/icons-material/School";
 
 export default function MainPage() {
   const [announcements, setAnnouncements] = useState<Array<any>>(null);
@@ -111,15 +115,6 @@ export default function MainPage() {
         </Box>
         <Box className="external-linkbox">
           <Box className="external-icon centeralize">
-            <DocumentScannerIcon sx={{ width: "100%", height: "100%" }} />
-          </Box>
-          <Box className="external_description_box">
-            <Typography variant="blacksmall">수련회</Typography>
-            <Typography variant="blacksmall">워크북</Typography>
-          </Box>
-        </Box>
-        <Box className="external-linkbox">
-          <Box className="external-icon centeralize">
             <Box className="emoji-box">🙏</Box>
           </Box>
           <Box className="external_description_box">
@@ -129,7 +124,68 @@ export default function MainPage() {
         </Box>
         <Box className="external-linkbox">
           <Box className="external-icon centeralize">
-            <ScheduleIcon sx={{ width: "100%", height: "100%" }} />
+            <img
+              className="external-icon-image"
+              src={mapIcon}
+              alt="youtube logo"
+            />
+          </Box>
+          <Box className="external_description_box">
+            <Typography variant="blacksmall">네이버</Typography>
+            <Typography variant="blacksmall">지도</Typography>
+          </Box>
+        </Box>
+        <Box className="external-linkbox">
+          <Box className="external-icon centeralize">
+            <Box className="emoji-box">🎁</Box>
+          </Box>
+          <Box className="external_description_box">
+            <Typography variant="blacksmall">랜덤</Typography>
+            <Typography variant="blacksmall">선물</Typography>
+          </Box>
+        </Box>
+      </Box>
+      {/* 중간 네비게이션 2행 */}
+      <Box className="fullWidth flex-left horizontal_overflow" sx={{ mt: 3 }}>
+        <Box className="external-linkbox">
+          <Box className="external-icon centeralize">
+            <Diversity3Icon />
+          </Box>
+          <Box className="external_description_box">
+            <Typography variant="blacksmall">우리조</Typography>
+            <Typography variant="blacksmall">보기</Typography>
+          </Box>
+        </Box>
+        <Box className="external-linkbox">
+          <Box className="external-icon centeralize">
+            <SchoolIcon />
+          </Box>
+          <Box className="external_description_box">
+            <Typography variant="blacksmall">수강</Typography>
+            <Typography variant="blacksmall">신청</Typography>
+          </Box>
+        </Box>
+        <Box className="external-linkbox">
+          <Box className="external-icon centeralize">
+            <ClassIcon />
+          </Box>
+          <Box className="external_description_box">
+            <Typography variant="blacksmall">실라</Typography>
+            <Typography variant="blacksmall">버스</Typography>
+          </Box>
+        </Box>
+        <Box className="external-linkbox">
+          <Box className="external-icon centeralize">
+            <DocumentScannerIcon />
+          </Box>
+          <Box className="external_description_box">
+            <Typography variant="blacksmall">수련회</Typography>
+            <Typography variant="blacksmall">워크북</Typography>
+          </Box>
+        </Box>
+        <Box className="external-linkbox">
+          <Box className="external-icon centeralize">
+            <ScheduleIcon />
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">타임</Typography>
