@@ -19,37 +19,7 @@ import ScheduleIcon from "@mui/icons-material/Schedule";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
 import SchoolIcon from "@mui/icons-material/School";
 
-// src/types/firestore.ts
-import { Timestamp } from "firebase/firestore";
-
-export interface Announcement {
-  title: string;
-  content: string;
-  active: boolean;
-  created_at: Timestamp;
-  is_updated: boolean;
-}
-
-export interface Pray {
-  author_id: string;
-  title: string;
-  content: string;
-  created_at: Timestamp;
-}
-
-export interface User {
-  student_id: string;
-  name: string;
-  group_id: number;
-  is_admin: boolean;
-  is_leader: boolean;
-}
-
-export interface LoadingState {
-  announcement: boolean;
-  prayBoard: boolean;
-  users: boolean;
-}
+import type { Announcement, Pray, User, LoadingState } from "../types/MainPage";
 
 export default function MainPage() {
   const [announcements, setAnnouncements] = useState<Array<Announcement>>([]);
