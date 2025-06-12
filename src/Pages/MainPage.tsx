@@ -5,6 +5,7 @@ import { db } from "../firebase";
 import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
+import Skeleton from "@mui/material/Skeleton";
 
 import churchLogo from "../assets/church-logo.png";
 import youtubeLogo from "../assets/youtube.png";
@@ -44,13 +45,25 @@ export interface User {
   is_leader: boolean;
 }
 
+export interface LoadingState {
+  announcement: boolean;
+  prayBoard: boolean;
+  users: boolean;
+}
+
 export default function MainPage() {
   const [announcements, setAnnouncements] = useState<Array<Announcement>>([]);
   const [prays, setPrays] = useState<Array<Pray>>([]);
   const [users, setUsers] = useState<Array<User>>([]);
+  const [isLoading, setIsLoading] = useState<LoadingState>({
+    announcement: true,
+    prayBoard: true,
+    users: true,
+  });
 
   useEffect(() => {
     const fetchAssignments = async () => {
+      setIsLoading((prev) => ({ ...prev, announcement: true }));
       const q = query(
         collection(db, "announcements"),
         where("active", "==", true),
@@ -66,7 +79,9 @@ export default function MainPage() {
       } else {
         console.log("[Warning]No accouncements has been queried");
       }
+      setIsLoading((prev) => ({ ...prev, announcement: false }));
 
+      setIsLoading((prev) => ({ ...prev, prayBoard: true }));
       const q2 = query(collection(db, "pray_board"));
       const querySnapshot2 = await getDocs(q2);
 
@@ -76,17 +91,25 @@ export default function MainPage() {
       } else {
         console.log("[Warning]No Prays");
       }
+      setIsLoading((prev) => ({ ...prev, prayBoard: false }));
 
+      setIsLoading((prev) => ({ ...prev, users: true }));
+      setIsLoading((prev) => ({ ...prev, users: true }));
       const usersQuery = query(collection(db, "users"));
       const usersSnapshot = await getDocs(usersQuery);
       if (!usersSnapshot.empty) {
         const users = usersSnapshot.docs.map((user) => user.data() as User);
         setUsers(users);
       }
+      setIsLoading((prev) => ({ ...prev, users: false }));
     };
 
     fetchAssignments();
   }, []);
+
+  useEffect(() => {
+    console.log(isLoading);
+  }, [isLoading]);
 
   return (
     <Box className="wrapper">
@@ -96,6 +119,13 @@ export default function MainPage() {
       </Box>
       {/* 공지사항 영역 */}
       <Box className="fullWidth announcementArea flex-left">
+        {isLoading.announcement && (
+          <Skeleton
+            variant="rectangular"
+            className="announcementDocument"
+            animation="wave"
+          />
+        )}
         {announcements ? (
           announcements.map((doc) => {
             return (
@@ -269,6 +299,7 @@ export default function MainPage() {
         </Box>
       </Box>
       {/* 게시판 영역: 기도제목 */}
+
       <Box
         className="flex-left gap5"
         sx={{
@@ -282,53 +313,64 @@ export default function MainPage() {
         <Typography variant="body1">🙏 기도제목</Typography>
         <Typography variant="toDetail">more {">"}</Typography>
       </Box>
-      <Box className="boardPreview">
-        {prays ? (
-          prays.map((pray) => (
-            <Box
-              key={`pray_${pray.created_at}`}
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Box sx={{ marginRight: 1 }}>
-                  <Typography variant="boardPreview_title">
-                    {pray.title}
-                  </Typography>
+      {isLoading.prayBoard ? (
+        <Skeleton
+          variant="rectangular"
+          className="boardPreview"
+          animation="wave"
+        />
+      ) : (
+        <Box className="boardPreview">
+          {prays ? (
+            prays.map((pray) => (
+              <Box
+                key={`pray_${pray.created_at}`}
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Box sx={{ marginRight: 1 }}>
+                    <Typography variant="boardPreview_title">
+                      {pray.title}
+                    </Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      maxWidth: "50%",
+                    }}
+                  >
+                    <Typography variant="boardPreview_detail">
+                      {pray.content}
+                    </Typography>
+                  </Box>
                 </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    maxWidth: "50%",
-                  }}
-                >
-                  <Typography variant="boardPreview_detail">
-                    {pray.content}
-                  </Typography>
-                </Box>
+                {users && (
+                  <Box sx={{ minWidth: "32px" }}>
+                    <Typography variant="boardPreview_author">
+                      {
+                        users.filter(
+                          (user) => user.student_id == pray.author_id
+                        )[0]?.name
+                      }
+                    </Typography>
+                  </Box>
+                )}
               </Box>
-              {users && (
-                <Box sx={{ minWidth: "32px" }}>
-                  <Typography variant="boardPreview_author">
-                    {
-                      users.filter(
-                        (user) => user.student_id == pray.author_id
-                      )[0]?.name
-                    }
-                  </Typography>
-                </Box>
-              )}
+            ))
+          ) : (
+            <Box
+              className="fully_centeralize fullSize"
+              sx={{ height: "120px" }}
+            >
+              <Typography>No Prays</Typography>
             </Box>
-          ))
-        ) : (
-          <Box className="fully_centeralize fullSize" sx={{ height: "120px" }}>
-            <Typography>No Prays</Typography>
-          </Box>
-        )}
-      </Box>
+          )}
+        </Box>
+      )}
     </Box>
   );
 }
