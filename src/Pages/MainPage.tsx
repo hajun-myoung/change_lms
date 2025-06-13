@@ -24,7 +24,8 @@ import ScheduleIcon from "@mui/icons-material/Schedule";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
 import SchoolIcon from "@mui/icons-material/School";
 
-import type { Announcement, Pray, User, LoadingState } from "../types/MainPage";
+import type { Announcement, User, LoadingState } from "../types/MainPage";
+import type { Pray } from "../types/Common";
 
 import { TimetableContent } from "../Components/TimetableContent";
 

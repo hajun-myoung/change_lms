@@ -1,8 +1,8 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import appLogo from "../assets/change_lms-logo.png";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-export default function Header() {
+export default function Header({ subtitle }: { subtitle?: string }) {
   return (
     <Box className="fullWidth header">
       {/* Logo Wrapper */}
@@ -13,12 +13,12 @@ export default function Header() {
           alt="App Logo: Change LMS"
           style={{
             height: "100%",
-            padding: 10,
+            padding: "10px 0px",
             boxSizing: "border-box",
-            paddingLeft: 0,
           }}
         />
       </Box>
+      {subtitle && <Typography>{subtitle}</Typography>}
       <AccountCircleIcon fontSize="large" />
     </Box>
   );
