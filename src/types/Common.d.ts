@@ -4,3 +4,11 @@ export interface Pray {
   content: string;
   created_at: Timestamp;
 }
+
+export interface User {
+  student_id: string;
+  name: string;
+  group_id: number;
+  is_admin: boolean;
+  is_leader: boolean;
+}

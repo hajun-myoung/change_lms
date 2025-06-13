@@ -8,14 +8,6 @@ export interface Announcement {
   is_updated: boolean;
 }
 
-export interface User {
-  student_id: string;
-  name: string;
-  group_id: number;
-  is_admin: boolean;
-  is_leader: boolean;
-}
-
 export interface LoadingState {
   announcement: boolean;
   prayBoard: boolean;

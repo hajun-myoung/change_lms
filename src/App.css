@@ -188,7 +188,6 @@
 }
 
 .advertise {
-  margin-top: 5vh;
   padding: 10px;
   box-sizing: border-box;
   height: 80px;
@@ -228,4 +227,13 @@
   border-radius: 10px;
   padding: 10px;
   box-sizing: border-box;
+}
+
+.boardCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  border-bottom: 0.5px gray solid;
+  padding: 10px;
 }

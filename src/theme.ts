@@ -11,6 +11,9 @@ declare module "@mui/material/styles" {
     boardPreview_title: React.CSSProperties;
     boardPreview_detail: React.CSSProperties;
     boardPreview_author: React.CSSProperties;
+    boardTitle: React.CSSProperties;
+    boardContent: React.CSSProperties;
+    boardMetadata: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -23,6 +26,9 @@ declare module "@mui/material/styles" {
     boardPreview_title: React.CSSProperties;
     boardPreview_detail: React.CSSProperties;
     boardPreview_author: React.CSSProperties;
+    boardTitle: React.CSSProperties;
+    boardContent: React.CSSProperties;
+    boardMetadata: React.CSSProperties;
   }
 }
 
@@ -37,6 +43,9 @@ declare module "@mui/material/Typography" {
     boardPreview_title: true;
     boardPreview_detail: true;
     boardPreview_author: true;
+    boardTitle: true;
+    boardContent: true;
+    boardMetadata: true;
   }
 }
 
@@ -102,6 +111,25 @@ const theme = createTheme({
       fontSize: "12px",
       color: "gray",
       overflow: "hidden",
+    },
+    boardTitle: {
+      fontSize: "16px",
+      fontWeight: 900,
+    },
+    boardContent: {
+      fontSize: "14px",
+      whiteSpace: "pre-line",
+      textOverflow: "ellipsis",
+      WebkitLineClamp: 3,
+      WebkitBoxOrient: "vertical",
+      lineClamp: 3,
+      boxOrient: "vertical",
+      display: "-webkit-box",
+      overflow: "hidden",
+    },
+    boardMetadata: {
+      fontSize: "14px",
+      color: "gray",
     },
   },
 });

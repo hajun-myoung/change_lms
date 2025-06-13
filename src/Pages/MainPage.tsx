@@ -1,4 +1,4 @@
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Header from "../Components/Header";
@@ -14,8 +14,6 @@ import CloseIcon from "@mui/icons-material/Close";
 
 import churchLogo from "../assets/church-logo.png";
 import youtubeLogo from "../assets/youtube.png";
-import worldMap from "../assets/world_map.png";
-import leaderVoting from "../assets/vote.png";
 import mapIcon from "../assets/naver_map.png";
 import ClassIcon from "@mui/icons-material/Class";
 
@@ -24,10 +22,11 @@ import ScheduleIcon from "@mui/icons-material/Schedule";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
 import SchoolIcon from "@mui/icons-material/School";
 
-import type { Announcement, User, LoadingState } from "../types/MainPage";
-import type { Pray } from "../types/Common";
+import type { Announcement, LoadingState } from "../types/MainPage";
+import type { Pray, User } from "../types/Common";
 
 import { TimetableContent } from "../Components/TimetableContent";
+import Advertisement from "../Components/Advertisement";
 
 export default function MainPage() {
   const [announcements, setAnnouncements] = useState<Array<Announcement>>([]);
@@ -40,7 +39,7 @@ export default function MainPage() {
   });
   const [timetableOpen, setTimetableOpen] = useState(false);
 
-  // const navigation = useNavigate();
+  const navigation = useNavigate();
 
   useEffect(() => {
     const fetchAssignments = async () => {
@@ -183,7 +182,7 @@ export default function MainPage() {
         <Box
           className="external-linkbox"
           onClick={() => {
-            alert("아직 준비되지 않은 기능입니다");
+            navigation("/pray");
           }}
         >
           <Box className="external-icon centeralize">
@@ -301,36 +300,9 @@ export default function MainPage() {
         </Box>
       </Box>
       {/* 광고 영역 */}
-      <Box className="fullWidth advertise">
-        <Box className="advertise_content">
-          <Typography variant="ad_title">올해는 나도 선교사!?</Typography>
-          <Typography variant="ad_description">
-            2025 아웃리치: 유니블캠프 / 샘물 호스피스
-          </Typography>
-        </Box>
-        <Box className="advertise_image-wrapper">
-          <img src={worldMap} className="advertise_image" />
-        </Box>
-      </Box>
-      <Box
-        className="fullWidth advertise"
-        sx={{ marginTop: 1, backgroundColor: "rgb(210, 243, 253)" }}
-      >
-        <Box className="advertise_content">
-          <Typography variant="ad_title">
-            쟤가 저기 있사오니 쟤를 시키소서
-          </Typography>
-          <Typography variant="ad_description">
-            2026년도 총무 / 리더 받습니다
-          </Typography>
-        </Box>
-        <Box className="advertise_image-wrapper">
-          <img
-            src={leaderVoting}
-            className="advertise_image"
-            style={{ width: "130%" }}
-          />
-        </Box>
+      <Box sx={{ marginTop: "5vh" }}>
+        <Advertisement ad_id="outreach" />
+        <Advertisement ad_id="leader" />
       </Box>
       {/* 게시판 영역: 기도제목 */}
 
@@ -345,7 +317,14 @@ export default function MainPage() {
         }}
       >
         <Typography variant="body1">🙏 기도제목</Typography>
-        <Typography variant="toDetail">more {">"}</Typography>
+        <Typography
+          variant="toDetail"
+          onClick={() => {
+            navigation("/pray");
+          }}
+        >
+          more {">"}
+        </Typography>
       </Box>
       {isLoading.prayBoard ? (
         <Skeleton
