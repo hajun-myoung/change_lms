@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import viteLogo from "/vite.svg";
+import appLogo from "../assets/change_lms-logo.png";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export default function Header() {
@@ -8,9 +8,9 @@ export default function Header() {
       {/* Logo Wrapper */}
       <Box className="fullHeight">
         <img
-          src={viteLogo}
+          src={appLogo}
           className="logo"
-          alt="Vite logo"
+          alt="App Logo: Change LMS"
           style={{
             height: "100%",
             padding: 10,

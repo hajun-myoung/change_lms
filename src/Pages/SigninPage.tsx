@@ -4,7 +4,7 @@ import { db } from "../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { useAuth } from "../Contexts/AuthContexts";
 
-import viteLogo from "/vite.svg";
+import appLogo from "../assets/change_lms-logo.png";
 
 export default function SigninPage() {
   const [studentId, setStudentId] = useState("");
@@ -31,11 +31,11 @@ export default function SigninPage() {
   };
 
   return (
-    <Box className="wrapper centeralize" sx={{ height: "100dvh" }}>
+    <Box className="wrapper centeralize" sx={{ height: "100dvh", mt: "-60px" }}>
       <Typography className="subtitle">높은뜻 정의교회</Typography>
       <Typography className="subtitle">2025 청년부 여름수련회</Typography>
       <Typography className="subtitle">"CHANGE"</Typography>
-      <img src={viteLogo} className="logo" alt="Vite logo" />
+      <img src={appLogo} className="logo" alt="App Logo: Change LMS" />
       <Box sx={{ paddingLeft: 10, paddingRight: 10, boxSizing: "border-box" }}>
         <TextField
           label="학번"
