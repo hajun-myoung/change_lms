@@ -161,7 +161,10 @@ export default function MainPage() {
         <Box
           className="external-linkbox"
           onClick={() => {
-            window.open("https://www.youtube.com", "_blank");
+            window.open(
+              "https://youtube.com/playlist?list=PLCOgZLj-whreTVYXkuQRv_Mx0O2j5A9vW&feature=shared",
+              "_blank"
+            );
           }}
         >
           <Box className="external-icon centeralize">
