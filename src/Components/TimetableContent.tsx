@@ -7,7 +7,7 @@ export function TimetableContent() {
     { time: "9:00 - 9:30", content: "여는 예배" },
     {
       time: "09:30 - 11:00",
-      content: "아이스 브레이킹 & 조별 모임(체인지 액팅)",
+      content: "아이스 브레이킹\n조별 모임(체인지 액팅)",
     },
     { time: "11:00 - 17:00", content: "점심 식사, 체인지 액팅" },
     { time: "17:00 - 18:00", content: "체인지 액팅 나눔" },
@@ -28,12 +28,18 @@ export function TimetableContent() {
           }}
         >
           <Typography
-            sx={{ width: "100px", fontWeight: "bold", flexShrink: 0 }}
+            sx={{
+              width: "100px",
+              fontWeight: "bold",
+              flexShrink: 0,
+            }}
             variant="body2"
           >
             {item.time}
           </Typography>
-          <Typography variant="body2">{item.content}</Typography>
+          <Typography sx={{ whiteSpace: "pre-line" }} variant="body2">
+            {item.content}
+          </Typography>
         </Box>
       ))}
     </Box>
