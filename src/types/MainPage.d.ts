@@ -8,13 +8,6 @@ export interface Announcement {
   is_updated: boolean;
 }
 
-export interface Pray {
-  author_id: string;
-  title: string;
-  content: string;
-  created_at: Timestamp;
-}
-
 export interface User {
   student_id: string;
   name: string;
