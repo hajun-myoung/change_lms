@@ -7,6 +7,7 @@ import ProtectedRouter from "./Components/ProtectedRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import PrayBoardPage from "./Pages/PrayBoardPage";
+import PostViewPage from "./Pages/PostViewPage";
 
 function App() {
   return (
@@ -28,6 +29,14 @@ function App() {
               element={
                 <ProtectedRouter>
                   <PrayBoardPage />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/post"
+              element={
+                <ProtectedRouter>
+                  <PostViewPage />
                 </ProtectedRouter>
               }
             />
