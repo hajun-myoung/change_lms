@@ -146,7 +146,7 @@
 .external_description_box {
   display: flex;
   flex-direction: column;
-  padding-top: 10px;
+  padding-top: 3px;
   white-space: nowrap;
 }
 
