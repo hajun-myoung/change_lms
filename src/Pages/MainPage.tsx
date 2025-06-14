@@ -164,7 +164,7 @@ export default function MainPage() {
         >
           <Box className="external-icon centeralize">
             {checked ? (
-              <ChurchTwoToneIcon sx={{ color: "rgb(255, 146, 139)" }} />
+              <ChurchTwoToneIcon sx={{ color: "#FAC656" }} />
             ) : (
               <img
                 className="external-icon-image"
@@ -189,7 +189,7 @@ export default function MainPage() {
         >
           <Box className="external-icon centeralize">
             {checked ? (
-              <HeadsetTwoToneIcon sx={{ color: "rgb(255, 146, 139)" }} />
+              <HeadsetTwoToneIcon sx={{ color: "#FAC656" }} />
             ) : (
               <img
                 className="external-icon-image"
@@ -211,7 +211,7 @@ export default function MainPage() {
         >
           <Box className="external-icon centeralize">
             {checked ? (
-              <AssistantTwoToneIcon sx={{ color: "rgb(255, 146, 139)" }} />
+              <AssistantTwoToneIcon sx={{ color: "#FAC656" }} />
             ) : (
               <Box className="emoji-box">🙏</Box>
             )}
@@ -229,7 +229,7 @@ export default function MainPage() {
         >
           <Box className="external-icon centeralize">
             {checked ? (
-              <MapTwoToneIcon sx={{ color: "rgb(255, 146, 139)" }} />
+              <MapTwoToneIcon sx={{ color: "#FAC656" }} />
             ) : (
               <img
                 className="external-icon-image"
@@ -251,7 +251,7 @@ export default function MainPage() {
         >
           <Box className="external-icon centeralize">
             {checked ? (
-              <CardGiftcardTwoToneIcon sx={{ color: "rgb(255, 146, 139)" }} />
+              <CardGiftcardTwoToneIcon sx={{ color: "#FAC656" }} />
             ) : (
               <Box className="emoji-box">🎁</Box>
             )}
@@ -272,7 +272,7 @@ export default function MainPage() {
         >
           <Box className="external-icon centeralize">
             {checked ? (
-              <Diversity3Icon sx={{ color: "rgb(255, 146, 139)" }} />
+              <Diversity3Icon sx={{ color: "#FAC656" }} />
             ) : (
               <Diversity3Icon />
             )}
@@ -290,7 +290,7 @@ export default function MainPage() {
         >
           <Box className="external-icon centeralize">
             {checked ? (
-              <SchoolIcon sx={{ color: "rgb(255, 146, 139)" }} />
+              <SchoolIcon sx={{ color: "#FAC656" }} />
             ) : (
               <SchoolIcon />
             )}
@@ -307,11 +307,7 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            {checked ? (
-              <ClassIcon sx={{ color: "rgb(255, 146, 139)" }} />
-            ) : (
-              <ClassIcon />
-            )}
+            {checked ? <ClassIcon sx={{ color: "#FAC656" }} /> : <ClassIcon />}
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">실라</Typography>
@@ -326,7 +322,7 @@ export default function MainPage() {
         >
           <Box className="external-icon centeralize">
             {checked ? (
-              <DocumentScannerIcon sx={{ color: "rgb(255, 146, 139)" }} />
+              <DocumentScannerIcon sx={{ color: "#FAC656" }} />
             ) : (
               <DocumentScannerIcon />
             )}
@@ -344,7 +340,7 @@ export default function MainPage() {
         >
           <Box className="external-icon centeralize">
             {checked ? (
-              <ScheduleIcon sx={{ color: "rgb(255, 146, 139)" }} />
+              <ScheduleIcon sx={{ color: "#FAC656" }} />
             ) : (
               <ScheduleIcon />
             )}

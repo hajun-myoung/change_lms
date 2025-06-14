@@ -3,13 +3,14 @@
   margin: 0 auto;
   /* padding: 2rem; */
   text-align: center;
-  background: linear-gradient(
+  /* background: linear-gradient(
     to bottom,
     white 0%,
     white 50vh,
     rgb(245, 245, 245) 60vh,
     rgb(245, 245, 245) 100%
-  );
+  ); */
+  background-color: rgb(76, 80, 67);
   padding-top: 60px;
 }
 
@@ -77,7 +78,8 @@
   padding-right: 10px;
   box-sizing: border-box;
 
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: rgb(76, 80, 67);
   z-index: 1100;
 }
 
@@ -111,8 +113,8 @@
 
   flex-shrink: 0;
   height: 100% !important;
-  background-color: rgb(255, 242, 241);
-  border: 1px rgb(240, 240, 240) solid;
+  background-color: #92b4a7;
+  border: 1px rgba(146, 180, 167, 0.7) solid;
   box-sizing: border-box;
 
   border-radius: 20px 20px 20px 20px;

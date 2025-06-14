@@ -14,6 +14,10 @@ declare module "@mui/material/styles" {
     boardTitle: React.CSSProperties;
     boardContent: React.CSSProperties;
     boardMetadata: React.CSSProperties;
+    subtitle_small: React.CSSProperties;
+    subtitle_big: React.CSSProperties;
+    subtitle_extrasmall: React.CSSProperties;
+    header: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -29,6 +33,10 @@ declare module "@mui/material/styles" {
     boardTitle: React.CSSProperties;
     boardContent: React.CSSProperties;
     boardMetadata: React.CSSProperties;
+    subtitle_small: React.CSSProperties;
+    subtitle_big: React.CSSProperties;
+    subtitle_extrasmall: React.CSSProperties;
+    header: React.CSSProperties;
   }
 }
 
@@ -46,15 +54,53 @@ declare module "@mui/material/Typography" {
     boardTitle: true;
     boardContent: true;
     boardMetadata: true;
+    subtitle_small: true;
+    subtitle_big: true;
+    subtitle_extrasmall: true;
+    header: true;
   }
 }
 
 const theme = createTheme({
+  components: {
+    MuiTextField: {
+      defaultProps: {
+        variant: "standard",
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          color: "white",
+          "&:before": {
+            borderBottom: "1px solid #fff", // default baseline
+          },
+          "&:hover:not(.Mui-disabled):before": {
+            borderBottom: "1px solid #ddd", // hovering baseline
+          },
+          "&:after": {
+            borderBottom: "2px solid gold", // focusing baseline
+          },
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: "#fff", // color of label
+          "&.Mui-focused": {
+            color: "#FAC656", // focusing label
+          },
+        },
+      },
+    },
+  },
   typography: {
     body1: {
       fontSize: "20px",
       fontWeight: 600,
       fontFamily: "Pretendard, sans-serif",
+      color: "#F5F5DC",
     },
     subtitle1: {
       fontSize: "18px",
@@ -82,7 +128,7 @@ const theme = createTheme({
     },
     blacksmall: {
       fontSize: "14px",
-      color: "#000",
+      color: "#F5F5DC",
       fontFamily: "Pretendard, sans-serif",
       lineHeight: "1.1",
     },
@@ -130,6 +176,30 @@ const theme = createTheme({
     boardMetadata: {
       fontSize: "14px",
       color: "gray",
+    },
+    subtitle_extrasmall: {
+      color: "#FAC656",
+      fontSize: "14px",
+      fontWeight: "bold",
+      lineHeight: 1.0,
+    },
+    subtitle_small: {
+      color: "#FAC656",
+      fontSize: "20px",
+      fontWeight: "bold",
+      lineHeight: 1.0,
+    },
+    subtitle_big: {
+      color: "#FAC656",
+      fontSize: "64px",
+      fontWeight: "bold",
+      lineHeight: 1.0,
+    },
+    header: {
+      color: "#FAC656",
+      fontSize: "32px",
+      fontWeight: "bold",
+      lineHeight: 1.0,
     },
   },
 });

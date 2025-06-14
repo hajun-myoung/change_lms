@@ -4,8 +4,6 @@ import { db } from "../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { useAuth } from "../Contexts/AuthContexts";
 
-import appLogo from "../assets/change_lms-logo.png";
-
 export default function SigninPage() {
   const [studentId, setStudentId] = useState("");
   const [error, setError] = useState("");
@@ -31,11 +29,39 @@ export default function SigninPage() {
   };
 
   return (
-    <Box className="wrapper centeralize" sx={{ height: "100dvh", mt: "-60px" }}>
-      <Typography className="subtitle">높은뜻 정의교회</Typography>
-      <Typography className="subtitle">2025 청년부 여름수련회</Typography>
-      <Typography className="subtitle">"CHANGE"</Typography>
-      <img src={appLogo} className="logo" alt="App Logo: Change LMS" />
+    <Box
+      className="wrapper centeralize"
+      sx={{
+        height: "100dvh",
+        mt: "-60px",
+      }}
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          top: 10,
+          left: 0,
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="subtitle_extrasmall">
+          THEREFORE, I URGE YOU, BROTHERS, IN VIEW OF GOD'S MERCY, TO OFFER YOUR
+          BODIES AS LIVING SACRIFICES, HOLY AND PLEASING TO GOD--THIS IS YOURN
+          SPIRITUAL ACT OF WORSHIP.
+        </Typography>
+      </Box>
+      <Typography className="subtitle" variant="subtitle_small">
+        2025 SUMMER RETREAT
+      </Typography>
+      <Typography className="subtitle" variant="subtitle_big">
+        CHANGE
+      </Typography>
+      <Typography className="subtitle" variant="subtitle_small">
+        GOD'S WILL JEONGEUI YOUTH
+      </Typography>
+
       <Box sx={{ paddingLeft: 10, paddingRight: 10, boxSizing: "border-box" }}>
         <TextField
           label="학번"
@@ -65,6 +91,23 @@ export default function SigninPage() {
         >
           로그인
         </Button>
+      </Box>
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: 10,
+          left: 0,
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="subtitle_extrasmall">
+          DO NOT CONFORM ANY LONGER TO THE PATTERN OF THIS WORLD, BUT BE
+          TRANSFORMED BY THE RENEWING OF YOUR MIND, THEN YOU WILL BE ABLE TO
+          TEST AND APPROVE WHAT GOD'S WILL IS--HIS GOOD, PLEASING AND PERFECT
+          WILL. {"["}ROMANS 12:1-2{"]"}
+        </Typography>
       </Box>
     </Box>
   );
