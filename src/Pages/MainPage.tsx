@@ -11,6 +11,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import Switch from "@mui/material/Switch";
 
 import churchLogo from "../assets/church-logo.png";
 import youtubeLogo from "../assets/youtube.png";
@@ -21,6 +22,11 @@ import DocumentScannerIcon from "@mui/icons-material/DocumentScanner";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import Diversity3Icon from "@mui/icons-material/Diversity3";
 import SchoolIcon from "@mui/icons-material/School";
+import ChurchTwoToneIcon from "@mui/icons-material/ChurchTwoTone";
+import HeadsetTwoToneIcon from "@mui/icons-material/HeadsetTwoTone";
+import AssistantTwoToneIcon from "@mui/icons-material/AssistantTwoTone";
+import MapTwoToneIcon from "@mui/icons-material/MapTwoTone";
+import CardGiftcardTwoToneIcon from "@mui/icons-material/CardGiftcardTwoTone";
 
 import type { Announcement, LoadingState } from "../types/MainPage";
 import type { Pray, User } from "../types/Common";
@@ -38,6 +44,11 @@ export default function MainPage() {
     users: true,
   });
   const [timetableOpen, setTimetableOpen] = useState(false);
+  const [checked, setChecked] = useState<boolean>(true);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked);
+  };
 
   const navigation = useNavigate();
 
@@ -139,6 +150,11 @@ export default function MainPage() {
         )}
       </Box>
       {/* 외부링크 연결 */}
+      {/* 임시코드: 아이콘 선택기 */}
+      <Switch checked={checked} onChange={handleChange} />
+      <Typography>
+        임시 아이콘 선택기-현재스타일: {checked ? "신버젼" : "구버젼"}
+      </Typography>
       <Box className="fullWidth flex-left horizontal_overflow" sx={{ mt: 3 }}>
         <Box
           className="external-linkbox"
@@ -147,11 +163,15 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            <img
-              className="external-icon-image"
-              src={churchLogo}
-              alt="church logo"
-            />
+            {checked ? (
+              <ChurchTwoToneIcon sx={{ color: "rgb(255, 146, 139)" }} />
+            ) : (
+              <img
+                className="external-icon-image"
+                src={churchLogo}
+                alt="church logo"
+              />
+            )}
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">교회</Typography>
@@ -168,11 +188,15 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            <img
-              className="external-icon-image"
-              src={youtubeLogo}
-              alt="youtube logo"
-            />
+            {checked ? (
+              <HeadsetTwoToneIcon sx={{ color: "rgb(255, 146, 139)" }} />
+            ) : (
+              <img
+                className="external-icon-image"
+                src={youtubeLogo}
+                alt="youtube logo"
+              />
+            )}
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">찬양</Typography>
@@ -186,7 +210,11 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            <Box className="emoji-box">🙏</Box>
+            {checked ? (
+              <AssistantTwoToneIcon sx={{ color: "rgb(255, 146, 139)" }} />
+            ) : (
+              <Box className="emoji-box">🙏</Box>
+            )}
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">기도</Typography>
@@ -200,11 +228,15 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            <img
-              className="external-icon-image"
-              src={mapIcon}
-              alt="youtube logo"
-            />
+            {checked ? (
+              <MapTwoToneIcon sx={{ color: "rgb(255, 146, 139)" }} />
+            ) : (
+              <img
+                className="external-icon-image"
+                src={mapIcon}
+                alt="youtube logo"
+              />
+            )}
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">네이버</Typography>
@@ -218,7 +250,11 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            <Box className="emoji-box">🎁</Box>
+            {checked ? (
+              <CardGiftcardTwoToneIcon sx={{ color: "rgb(255, 146, 139)" }} />
+            ) : (
+              <Box className="emoji-box">🎁</Box>
+            )}
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">랜덤</Typography>
@@ -227,7 +263,7 @@ export default function MainPage() {
         </Box>
       </Box>
       {/* 중간 네비게이션 2행 */}
-      <Box className="fullWidth flex-left horizontal_overflow" sx={{ mt: 3 }}>
+      <Box className="fullWidth flex-left horizontal_overflow" sx={{ mt: 1 }}>
         <Box
           className="external-linkbox"
           onClick={() => {
@@ -235,7 +271,11 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            <Diversity3Icon />
+            {checked ? (
+              <Diversity3Icon sx={{ color: "rgb(255, 146, 139)" }} />
+            ) : (
+              <Diversity3Icon />
+            )}
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">우리조</Typography>
@@ -249,7 +289,11 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            <SchoolIcon />
+            {checked ? (
+              <SchoolIcon sx={{ color: "rgb(255, 146, 139)" }} />
+            ) : (
+              <SchoolIcon />
+            )}
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">수강</Typography>
@@ -263,7 +307,11 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            <ClassIcon />
+            {checked ? (
+              <ClassIcon sx={{ color: "rgb(255, 146, 139)" }} />
+            ) : (
+              <ClassIcon />
+            )}
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">실라</Typography>
@@ -277,7 +325,11 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            <DocumentScannerIcon />
+            {checked ? (
+              <DocumentScannerIcon sx={{ color: "rgb(255, 146, 139)" }} />
+            ) : (
+              <DocumentScannerIcon />
+            )}
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">수련회</Typography>
@@ -291,7 +343,11 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            <ScheduleIcon />
+            {checked ? (
+              <ScheduleIcon sx={{ color: "rgb(255, 146, 139)" }} />
+            ) : (
+              <ScheduleIcon />
+            )}
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">타임</Typography>
