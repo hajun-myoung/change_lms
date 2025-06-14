@@ -14,7 +14,7 @@ export default function Header({ subtitle }: { subtitle?: string }) {
           flexDirection: "column",
         }}
       >
-        <Typography variant="subtitle_extrasmall" sx={{ ml: "1px" }}>
+        <Typography variant="header_small" sx={{ ml: "1px" }}>
           2025 SUMMER RETREAT
         </Typography>
         <Typography variant="header">CHANGE</Typography>

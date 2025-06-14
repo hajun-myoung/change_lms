@@ -11,11 +11,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Switch from "@mui/material/Switch";
 
-import churchLogo from "../assets/church-logo.png";
-import youtubeLogo from "../assets/youtube.png";
-import mapIcon from "../assets/naver_map.png";
 import ClassIcon from "@mui/icons-material/Class";
 
 import DocumentScannerIcon from "@mui/icons-material/DocumentScanner";
@@ -44,11 +40,6 @@ export default function MainPage() {
     users: true,
   });
   const [timetableOpen, setTimetableOpen] = useState(false);
-  const [checked, setChecked] = useState<boolean>(true);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
-  };
 
   const navigation = useNavigate();
 
@@ -133,7 +124,14 @@ export default function MainPage() {
                 <Button
                   variant="text"
                   size="small"
-                  sx={{ mt: "auto", alignSelf: "flex-start" }}
+                  sx={{
+                    mt: "auto",
+                    alignSelf: "flex-start",
+                    color: "#00002F",
+                    p: 0,
+                    display: "flex",
+                    justifyContent: "flex-start",
+                  }}
                   onClick={() => {
                     alert("아직 준비되지 않은 기능입니다");
                   }} // 클릭 핸들러
@@ -150,11 +148,6 @@ export default function MainPage() {
         )}
       </Box>
       {/* 외부링크 연결 */}
-      {/* 임시코드: 아이콘 선택기 */}
-      <Switch checked={checked} onChange={handleChange} />
-      <Typography>
-        임시 아이콘 선택기-현재스타일: {checked ? "신버젼" : "구버젼"}
-      </Typography>
       <Box className="fullWidth flex-left horizontal_overflow" sx={{ mt: 3 }}>
         <Box
           className="external-linkbox"
@@ -163,15 +156,7 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            {checked ? (
-              <ChurchTwoToneIcon sx={{ color: "#FAC656" }} />
-            ) : (
-              <img
-                className="external-icon-image"
-                src={churchLogo}
-                alt="church logo"
-              />
-            )}
+            <ChurchTwoToneIcon sx={{ color: "#FAC656" }} />
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">교회</Typography>
@@ -188,15 +173,7 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            {checked ? (
-              <HeadsetTwoToneIcon sx={{ color: "#FAC656" }} />
-            ) : (
-              <img
-                className="external-icon-image"
-                src={youtubeLogo}
-                alt="youtube logo"
-              />
-            )}
+            <HeadsetTwoToneIcon sx={{ color: "#FAC656" }} />
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">찬양</Typography>
@@ -210,11 +187,7 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            {checked ? (
-              <AssistantTwoToneIcon sx={{ color: "#FAC656" }} />
-            ) : (
-              <Box className="emoji-box">🙏</Box>
-            )}
+            <AssistantTwoToneIcon sx={{ color: "#FAC656" }} />
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">기도</Typography>
@@ -228,15 +201,7 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            {checked ? (
-              <MapTwoToneIcon sx={{ color: "#FAC656" }} />
-            ) : (
-              <img
-                className="external-icon-image"
-                src={mapIcon}
-                alt="youtube logo"
-              />
-            )}
+            <MapTwoToneIcon sx={{ color: "#FAC656" }} />
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">네이버</Typography>
@@ -250,11 +215,7 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            {checked ? (
-              <CardGiftcardTwoToneIcon sx={{ color: "#FAC656" }} />
-            ) : (
-              <Box className="emoji-box">🎁</Box>
-            )}
+            <CardGiftcardTwoToneIcon sx={{ color: "#FAC656" }} />
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">랜덤</Typography>
@@ -271,11 +232,7 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            {checked ? (
-              <Diversity3Icon sx={{ color: "#FAC656" }} />
-            ) : (
-              <Diversity3Icon />
-            )}
+            <Diversity3Icon sx={{ color: "#FAC656" }} />
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">우리조</Typography>
@@ -289,11 +246,7 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            {checked ? (
-              <SchoolIcon sx={{ color: "#FAC656" }} />
-            ) : (
-              <SchoolIcon />
-            )}
+            <SchoolIcon sx={{ color: "#FAC656" }} />
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">수강</Typography>
@@ -307,7 +260,7 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            {checked ? <ClassIcon sx={{ color: "#FAC656" }} /> : <ClassIcon />}
+            <ClassIcon sx={{ color: "#FAC656" }} />
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">실라</Typography>
@@ -321,11 +274,7 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            {checked ? (
-              <DocumentScannerIcon sx={{ color: "#FAC656" }} />
-            ) : (
-              <DocumentScannerIcon />
-            )}
+            <DocumentScannerIcon sx={{ color: "#FAC656" }} />
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">수련회</Typography>
@@ -339,11 +288,7 @@ export default function MainPage() {
           }}
         >
           <Box className="external-icon centeralize">
-            {checked ? (
-              <ScheduleIcon sx={{ color: "#FAC656" }} />
-            ) : (
-              <ScheduleIcon />
-            )}
+            <ScheduleIcon sx={{ color: "#FAC656" }} />
           </Box>
           <Box className="external_description_box">
             <Typography variant="blacksmall">타임</Typography>

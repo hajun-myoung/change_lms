@@ -18,6 +18,7 @@ declare module "@mui/material/styles" {
     subtitle_big: React.CSSProperties;
     subtitle_extrasmall: React.CSSProperties;
     header: React.CSSProperties;
+    header_small: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -37,6 +38,7 @@ declare module "@mui/material/styles" {
     subtitle_big: React.CSSProperties;
     subtitle_extrasmall: React.CSSProperties;
     header: React.CSSProperties;
+    header_small: React.CSSProperties;
   }
 }
 
@@ -58,6 +60,7 @@ declare module "@mui/material/Typography" {
     subtitle_big: true;
     subtitle_extrasmall: true;
     header: true;
+    header_small: true;
   }
 }
 
@@ -79,7 +82,7 @@ const theme = createTheme({
             borderBottom: "1px solid #ddd", // hovering baseline
           },
           "&:after": {
-            borderBottom: "2px solid gold", // focusing baseline
+            borderBottom: "2px solid #FAC656", // focusing baseline
           },
         },
       },
@@ -99,24 +102,25 @@ const theme = createTheme({
     body1: {
       fontSize: "20px",
       fontWeight: 600,
-      fontFamily: "Pretendard, sans-serif",
-      color: "#F5F5DC",
+      fontFamily: '"Pretendard", sans-serif',
+      color: "#FAC656",
     },
     subtitle1: {
       fontSize: "18px",
       fontWeight: 700,
-      fontFamily: "Pretendard, sans-serif",
+      fontFamily: '"Pretendard", sans-serif',
     },
     announcePreviewTitle: {
       fontSize: "16px",
       fontWeight: 800,
-      fontFamily: "Pretendard, sans-serif",
+      fontFamily: '"Pretendard", sans-serif',
+      color: "#00002F",
     },
     announcePreviewContent: {
       fontSize: "14px",
       fontWeight: 400,
-      fontFamily: "Pretendard, sans-serif",
-      color: "gray",
+      fontFamily: '"Pretendard", sans-serif',
+      color: "#00002F",
       textAlign: "left",
       overflow: "hidden",
       textOverflow: "ellipsis",
@@ -129,18 +133,28 @@ const theme = createTheme({
     blacksmall: {
       fontSize: "14px",
       color: "#F5F5DC",
-      fontFamily: "Pretendard, sans-serif",
+      fontFamily: '"Pretendard", sans-serif',
       lineHeight: "1.1",
     },
-    ad_title: { fontSize: "17.5px", fontWeight: 900 },
-    ad_description: { fontSize: "11.7px", fontWeight: 600 },
+    ad_title: {
+      fontSize: "17.5px",
+      fontWeight: 900,
+      fontFamily: '"Pretendard", sans-serif',
+    },
+    ad_description: {
+      fontSize: "11.7px",
+      fontWeight: 600,
+      fontFamily: '"Pretendard", sans-serif',
+    },
     toDetail: {
       fontSize: "12px",
       color: "grey",
       fontWeight: "bold",
+      fontFamily: '"Pretendard", sans-serif',
     },
     boardPreview_title: {
       fontSize: "14px",
+      fontFamily: '"Pretendard", sans-serif',
     },
     boardPreview_detail: {
       fontSize: "12px",
@@ -152,15 +166,19 @@ const theme = createTheme({
       lineClamp: 1,
       boxOrient: "vertical",
       display: "-webkit-box",
+      fontFamily: ' "Pretendard", sans-serif',
     },
     boardPreview_author: {
       fontSize: "12px",
       color: "gray",
       overflow: "hidden",
+      fontFamily: '"Pretendard", sans-serif',
     },
     boardTitle: {
       fontSize: "16px",
       fontWeight: 900,
+      color: "#FAC656",
+      fontFamily: '"Pretendard", sans-serif',
     },
     boardContent: {
       fontSize: "14px",
@@ -172,24 +190,29 @@ const theme = createTheme({
       boxOrient: "vertical",
       display: "-webkit-box",
       overflow: "hidden",
+      color: "#FFF",
+      fontFamily: '"Pretendard", sans-serif',
     },
     boardMetadata: {
       fontSize: "14px",
-      color: "gray",
+      color: "#DADADA",
     },
     subtitle_extrasmall: {
+      fontFamily: '"Staatliches", "Pretendard", sans-serif',
       color: "#FAC656",
       fontSize: "14px",
       fontWeight: "bold",
       lineHeight: 1.0,
     },
     subtitle_small: {
+      fontFamily: '"Staatliches", "Pretendard", sans-serif',
       color: "#FAC656",
       fontSize: "20px",
       fontWeight: "bold",
       lineHeight: 1.0,
     },
     subtitle_big: {
+      fontFamily: '"Staatliches", "Pretendard", sans-serif',
       color: "#FAC656",
       fontSize: "64px",
       fontWeight: "bold",
@@ -200,6 +223,15 @@ const theme = createTheme({
       fontSize: "32px",
       fontWeight: "bold",
       lineHeight: 1.0,
+      fontFamily: '"Staatliches", "Pretendard", sans-serif',
+    },
+    header_small: {
+      color: "#FAC656",
+      fontSize: "12px",
+      fontWeight: "bold",
+      lineHeight: 1.0,
+      fontStretch: "57%",
+      fontFamily: '"Staatliches", "Pretendard", sans-serif',
     },
   },
 });
