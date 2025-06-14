@@ -23,7 +23,7 @@ export default function Advertisement({ ad_id }: { ad_id: string }) {
       {ad_id == "leader" && (
         <Box
           className="fullWidth advertise"
-          sx={{ marginTop: 1, backgroundColor: "rgb(210, 243, 253)" }}
+          sx={{ marginTop: 1, backgroundColor: "#92B4A7" }}
         >
           <Box className="advertise_content">
             <Typography variant="ad_title">

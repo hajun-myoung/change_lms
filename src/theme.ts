@@ -137,11 +137,15 @@ const theme = createTheme({
       lineHeight: "1.1",
     },
     ad_title: {
+      color: "#F5F5DC",
+      textShadow: "1px 1px 2px black",
       fontSize: "17.5px",
       fontWeight: 900,
       fontFamily: '"Pretendard", sans-serif',
     },
     ad_description: {
+      color: "#F5F5DC",
+      textShadow: "1px 1px 2px black",
       fontSize: "11.7px",
       fontWeight: 600,
       fontFamily: '"Pretendard", sans-serif',

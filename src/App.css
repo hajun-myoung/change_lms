@@ -195,8 +195,8 @@
   box-sizing: border-box;
   height: 80px;
   border-radius: 20px;
-  background-color: rgb(255, 253, 235);
-  border: 1px rgb(240, 240, 240) solid;
+  background-color: #9b6a6c;
+  /* border: 1px rgb(240, 240, 240) solid; */
 
   display: flex;
   align-items: center;
