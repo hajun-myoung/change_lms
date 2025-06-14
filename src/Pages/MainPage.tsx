@@ -408,6 +408,29 @@ export default function MainPage() {
           <TimetableContent />
         </Box>
       </Dialog>
+
+      {/* Version Indicator */}
+      <Box
+        className="fullWidth"
+        sx={{ mt: 2, mb: 1, borderTop: "0.5px gray solid" }}
+      >
+        <Box sx={{ height: "2.4vw" }}>
+          <Typography variant="footerinfo">
+            Ver0.1.0|@Copyright DENVER |@Design assisted by Sandy, Lim. Eunseo,
+            Choo.
+          </Typography>
+        </Box>
+        <Box sx={{ height: "2.4vw" }}>
+          <Typography variant="footerinfo">
+            Published for @높은뜻 정의교회, 2025,.
+          </Typography>
+        </Box>
+        <Box sx={{ height: "2.4vw" }}>
+          <Typography variant="footerinfo">
+            Contact us | fe.dev.denver@gmail.com or 높은뜻 정의교회 청년부
+          </Typography>
+        </Box>
+      </Box>
     </Box>
   );
 }

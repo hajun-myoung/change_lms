@@ -19,6 +19,7 @@ declare module "@mui/material/styles" {
     subtitle_extrasmall: React.CSSProperties;
     header: React.CSSProperties;
     header_small: React.CSSProperties;
+    footerinfo: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -39,6 +40,7 @@ declare module "@mui/material/styles" {
     subtitle_extrasmall: React.CSSProperties;
     header: React.CSSProperties;
     header_small: React.CSSProperties;
+    footerinfo: React.CSSProperties;
   }
 }
 
@@ -61,6 +63,7 @@ declare module "@mui/material/Typography" {
     subtitle_extrasmall: true;
     header: true;
     header_small: true;
+    footerinfo: true;
   }
 }
 
@@ -236,6 +239,11 @@ const theme = createTheme({
       lineHeight: 1.0,
       fontStretch: "57%",
       fontFamily: '"Staatliches", "Pretendard", sans-serif',
+    },
+    footerinfo: {
+      color: "#FFF",
+      fontSize: "2.2vw",
+      fontFamily: '"Pretendard", sans-serif',
     },
   },
 });
