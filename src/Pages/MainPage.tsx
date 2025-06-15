@@ -313,7 +313,10 @@ export default function MainPage() {
           alignItems: "flex-end",
         }}
       >
-        <Typography variant="body1">🙏 기도제목</Typography>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <AssistantTwoToneIcon sx={{ color: "#FAC656", mr: 0.5 }} />
+          <Typography variant="body1">기도제목</Typography>
+        </Box>
         <Typography
           variant="toDetail"
           onClick={() => {
