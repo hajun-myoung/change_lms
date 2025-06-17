@@ -160,7 +160,7 @@ const theme = createTheme({
       fontFamily: '"Pretendard", sans-serif',
     },
     boardPreview_title: {
-      color: "black",
+      color: "#000",
       fontSize: "14px",
       fontFamily: '"Pretendard", sans-serif',
     },
