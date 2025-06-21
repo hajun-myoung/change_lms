@@ -273,7 +273,7 @@ export default function MainPage() {
         <Box
           className="external-linkbox"
           onClick={() => {
-            alert("아직 준비되지 않은 기능입니다");
+            navigation("/workbook");
           }}
         >
           <Box className="external-icon centeralize">
