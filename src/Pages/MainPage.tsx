@@ -22,7 +22,9 @@ import ChurchTwoToneIcon from "@mui/icons-material/ChurchTwoTone";
 import HeadsetTwoToneIcon from "@mui/icons-material/HeadsetTwoTone";
 import AssistantTwoToneIcon from "@mui/icons-material/AssistantTwoTone";
 import MapTwoToneIcon from "@mui/icons-material/MapTwoTone";
-import CardGiftcardTwoToneIcon from "@mui/icons-material/CardGiftcardTwoTone";
+import DirectionsCarFilledTwoToneIcon from "@mui/icons-material/DirectionsCarFilledTwoTone";
+
+import parkingLocationImage from "../assets/parking_map.png";
 
 import type { Announcement, LoadingState } from "../types/MainPage";
 import type { Pray, User } from "../types/Common";
@@ -39,7 +41,8 @@ export default function MainPage() {
     prayBoard: true,
     users: true,
   });
-  const [timetableOpen, setTimetableOpen] = useState(false);
+  const [timetableOpen, setTimetableOpen] = useState<boolean>(false);
+  const [parkingOpen, setParkingOpen] = useState<boolean>(false);
 
   const navigation = useNavigate();
 
@@ -211,15 +214,15 @@ export default function MainPage() {
         <Box
           className="external-linkbox"
           onClick={() => {
-            alert("아직 준비되지 않은 기능입니다");
+            setParkingOpen(true);
           }}
         >
           <Box className="external-icon centeralize">
-            <CardGiftcardTwoToneIcon sx={{ color: "#FAC656" }} />
+            <DirectionsCarFilledTwoToneIcon sx={{ color: "#FAC656" }} />
           </Box>
           <Box className="external_description_box">
-            <Typography variant="blacksmall">랜덤</Typography>
-            <Typography variant="blacksmall">선물</Typography>
+            <Typography variant="blacksmall">주차</Typography>
+            <Typography variant="blacksmall">안내</Typography>
           </Box>
         </Box>
       </Box>
@@ -410,6 +413,58 @@ export default function MainPage() {
         <Box sx={{ p: 2 }}>
           <TimetableContent />
         </Box>
+      </Dialog>
+
+      {/* 타임테이블 모달창 */}
+      <Dialog
+        open={parkingOpen}
+        onClose={() => setParkingOpen(false)}
+        fullWidth
+        maxWidth="sm"
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }}>
+          주차안내
+          <IconButton
+            aria-label="close"
+            onClick={() => setParkingOpen(false)}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <Box sx={{ p: 2 }}>
+          <Box sx={{ display: "flex" }}>
+            <Typography sx={{ mr: 1 }} variant="body2">
+              •
+            </Typography>
+            <Typography sx={{ whiteSpace: "pre-line" }} variant="body2">
+              오전 8시~밤 11시까지 정의여자고등학교에{"\n"} 주차가 가능합니다.{" "}
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex" }}>
+            <Typography sx={{ mr: 1 }} variant="body2">
+              •
+            </Typography>
+            <Typography sx={{ whiteSpace: "pre-line" }} variant="body2">
+              가급적 필로티 건물은 지양해주세요.
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex" }}>
+            <Typography sx={{ mr: 1 }} variant="body2">
+              •
+            </Typography>
+            <Typography sx={{ whiteSpace: "pre-line" }} variant="body2">
+              체인지 액팅 때 차량사용이 필요한 경우{"\n"} 윤기헌 전도사에게
+              문의해주세요.
+            </Typography>
+          </Box>
+        </Box>
+        <img src={parkingLocationImage} />
       </Dialog>
 
       {/* Version Indicator */}
