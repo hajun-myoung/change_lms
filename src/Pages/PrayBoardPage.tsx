@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import type { Pray, User } from "../types/Common";
 import Advertisement from "../Components/Advertisement";
 import { Skeleton } from "@mui/material";
+import FloatingHomeButton from "../Contexts/FloatingHomeButton";
 
 export default function PrayBoardPage() {
   const [prays, setPrays] = useState<Array<Pray>>([]);
@@ -96,6 +97,8 @@ export default function PrayBoardPage() {
           })}
         </Box>
       )}
+      {/* Floating Home Button */}
+      <FloatingHomeButton />
     </Box>
   );
 }

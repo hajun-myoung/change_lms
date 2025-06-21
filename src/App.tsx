@@ -8,6 +8,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import PrayBoardPage from "./Pages/PrayBoardPage";
 import PostViewPage from "./Pages/PostViewPage";
+import WorkbookPage from "./Pages/WorkbookPage";
 
 function App() {
   return (
@@ -37,6 +38,14 @@ function App() {
               element={
                 <ProtectedRouter>
                   <PostViewPage />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/workbook"
+              element={
+                <ProtectedRouter>
+                  <WorkbookPage />
                 </ProtectedRouter>
               }
             />
