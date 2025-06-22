@@ -41,9 +41,8 @@ export default function WorkbookPage() {
   }, []);
 
   return (
-    <Box className="wrapper">
+    <Box className="height_fixed_wrapper">
       <Header subtitle="수련회 워크북" />
-
       <Box
         sx={{
           display: "flex",

@@ -59,6 +59,17 @@
   padding: 20px;
   padding-top: 5px;
   box-sizing: border-box;
+  min-height: calc(100vh - 60px);
+  /* height: calc(100vh - 60px);
+  overflow-y: scroll; */
+}
+
+.height_fixed_wrapper {
+  width: 100vw;
+  max-width: 100%;
+  padding: 20px;
+  padding-top: 5px;
+  box-sizing: border-box;
   /* min-height: calc(100vh - 60px); */
   height: calc(100vh - 60px);
   overflow-y: scroll;
