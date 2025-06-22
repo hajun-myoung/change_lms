@@ -20,6 +20,7 @@ declare module "@mui/material/styles" {
     header: React.CSSProperties;
     header_small: React.CSSProperties;
     footerinfo: React.CSSProperties;
+    label: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -41,6 +42,7 @@ declare module "@mui/material/styles" {
     header: React.CSSProperties;
     header_small: React.CSSProperties;
     footerinfo: React.CSSProperties;
+    label: React.CSSProperties;
   }
 }
 
@@ -64,6 +66,7 @@ declare module "@mui/material/Typography" {
     header: true;
     header_small: true;
     footerinfo: true;
+    label: true;
   }
 }
 
@@ -245,6 +248,14 @@ const theme = createTheme({
       color: "#FFF",
       fontSize: "2.2vw",
       fontFamily: '"Pretendard", sans-serif',
+    },
+    label: {
+      fontSize: "16px",
+      backgroundColor: "gray",
+      paddingLeft: 6,
+      paddingRight: 6,
+      borderRadius: 12,
+      color: "#FFF",
     },
   },
 });

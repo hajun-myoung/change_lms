@@ -32,6 +32,8 @@ import type { Pray, User } from "../types/Common";
 import { TimetableContent } from "../Components/TimetableContent";
 import Advertisement from "../Components/Advertisement";
 
+import { useAuth } from "../Contexts/AuthContexts";
+
 export default function MainPage() {
   const [announcements, setAnnouncements] = useState<Array<Announcement>>([]);
   const [prays, setPrays] = useState<Array<Pray>>([]);
@@ -41,8 +43,15 @@ export default function MainPage() {
     prayBoard: true,
     users: true,
   });
+
+  // Modal handlers
+  const [groupViewOpen, setGroupViewOpen] = useState<boolean>(false);
   const [timetableOpen, setTimetableOpen] = useState<boolean>(false);
   const [parkingOpen, setParkingOpen] = useState<boolean>(false);
+
+  // User Context
+  const { user } = useAuth();
+  // console.log(user);
 
   const navigation = useNavigate();
 
@@ -95,6 +104,10 @@ export default function MainPage() {
   useEffect(() => {
     console.log(isLoading);
   }, [isLoading]);
+
+  // useEffect(() => {
+  //   console.log(users);
+  // }, [users]);
 
   return (
     <Box className="wrapper">
@@ -231,7 +244,7 @@ export default function MainPage() {
         <Box
           className="external-linkbox"
           onClick={() => {
-            alert("아직 준비되지 않은 기능입니다");
+            setGroupViewOpen(true);
           }}
         >
           <Box className="external-icon centeralize">
@@ -415,7 +428,7 @@ export default function MainPage() {
         </Box>
       </Dialog>
 
-      {/* 타임테이블 모달창 */}
+      {/* 주차안내 모달창 */}
       <Dialog
         open={parkingOpen}
         onClose={() => setParkingOpen(false)}
@@ -437,6 +450,7 @@ export default function MainPage() {
             <CloseIcon />
           </IconButton>
         </DialogTitle>
+
         <Box sx={{ p: 2 }}>
           <Box sx={{ display: "flex" }}>
             <Typography sx={{ mr: 1 }} variant="body2">
@@ -465,6 +479,63 @@ export default function MainPage() {
           </Box>
         </Box>
         <img src={parkingLocationImage} />
+      </Dialog>
+
+      {/* 조 안내 모달창 */}
+      <Dialog
+        open={groupViewOpen}
+        onClose={() => setGroupViewOpen(false)}
+        fullWidth
+        maxWidth="sm"
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }}>
+          우리조 보기
+          <IconButton
+            aria-label="close"
+            onClick={() => setParkingOpen(false)}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+
+        <Box sx={{ p: 2 }}>
+          <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+            <Typography variant="label" sx={{ mr: 1 }}>
+              리더
+            </Typography>
+            <Typography variant="body2">
+              {
+                users.filter(
+                  (target) =>
+                    target.group_id == user.group_id && target.is_leader
+                )[0]?.name
+              }
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Typography variant="label" sx={{ mr: 1 }}>
+              멤버
+            </Typography>
+            <Box sx={{ display: "flex" }}>
+              {users
+                .filter(
+                  (target) =>
+                    target.group_id == user.group_id && !target.is_leader
+                )
+                .map((user) => (
+                  <Typography variant="body2" sx={{ mr: 0.5 }}>
+                    {user.name}
+                  </Typography>
+                ))}
+            </Box>
+          </Box>
+        </Box>
       </Dialog>
 
       {/* Version Indicator */}
