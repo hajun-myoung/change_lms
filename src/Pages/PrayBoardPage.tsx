@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import type { Pray, User } from "../types/Common";
 import Advertisement from "../Components/Advertisement";
 import { Skeleton } from "@mui/material";
-import FloatingHomeButton from "../Contexts/FloatingHomeButton";
+import FloatingHomeButton from "../Components/FloatingHomeButton";
 
 export default function PrayBoardPage() {
   const [prays, setPrays] = useState<Array<Pray>>([]);
