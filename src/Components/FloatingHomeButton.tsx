@@ -6,7 +6,7 @@ export default function FloatingHomeButton() {
   const navigation = useNavigate();
   return (
     <Box
-      className="leftBottom_floating fully_centeralize"
+      className="leftBottom_floating fully_centeralize homebutton"
       onClick={() => {
         navigation("/");
       }}
