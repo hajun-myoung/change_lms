@@ -7,6 +7,8 @@ import HomeFilledIcon from "@mui/icons-material/HomeFilled";
 import DownloadIcon from "@mui/icons-material/Download";
 import IosShareIcon from "@mui/icons-material/IosShare";
 
+import { useGesture } from "@use-gesture/react";
+
 import workbookPdf from "../assets/workbook.pdf";
 
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.js";
@@ -24,6 +26,13 @@ export default function WorkbookPage() {
     setNumPages(numPages);
     setPageNumber(1);
   }
+
+  const bind = useGesture({
+    onDragEnd: ({ swipe: [swipeX] }) => {
+      if (swipeX === -1) setPageNumber((prev) => Math.min(prev + 1, numPages));
+      if (swipeX === 1) setPageNumber((prev) => Math.max(prev - 1, 1));
+    },
+  });
 
   useEffect(() => {
     const updateScale = () => {
@@ -98,6 +107,7 @@ export default function WorkbookPage() {
             flex: 1,
             minHeight: 0,
           }}
+          {...bind()}
         >
           <Document file={workbookPdf} onLoadSuccess={onDocumentLoadSuccess}>
             {/* height, width는 number 타입으로 vh, %는 먹지 않습니다. */}
