@@ -5,7 +5,7 @@ import type { User } from "../types/Common";
 export const AuthContext = createContext<any>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User>(null);
+  const [user, setUser] = useState<User>();
   const [loading, setLoading] = useState(true); // 🚀 로딩 상태 추가
 
   useEffect(() => {
