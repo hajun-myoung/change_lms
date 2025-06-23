@@ -8,8 +8,10 @@ export default function SigninPage() {
   const [studentId, setStudentId] = useState("");
   const [error, setError] = useState("");
   const { setUser } = useAuth();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSignin = async () => {
+    setIsLoading(true);
     const q = query(
       collection(db, "users"),
       where("student_id", "==", studentId)
@@ -26,6 +28,7 @@ export default function SigninPage() {
     } else {
       setError("존재하지 않는 학번입니다.");
     }
+    setIsLoading(false);
   };
 
   return (
@@ -81,15 +84,21 @@ export default function SigninPage() {
           fullWidth
           sx={{
             mt: 2,
+            height: "32.5px",
             bgcolor: studentId ? "error.main" : "grey.400",
             color: studentId ? "common.white" : "grey.700",
             "&:hover": {
               bgcolor: studentId ? "error.dark" : "grey.500",
             },
+            "&.Mui-disabled": {
+              bgcolor: "grey.400",
+              color: "grey.700",
+            },
           }}
           onClick={handleSignin}
+          loading={isLoading}
         >
-          로그인
+          {isLoading ? "" : "로그인"}
         </Button>
       </Box>
       <Box
