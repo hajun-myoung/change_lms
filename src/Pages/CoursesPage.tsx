@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Typography } from "@mui/material";
+import { Box, Card, CardContent, Skeleton, Typography } from "@mui/material";
 import Header from "../Components/Header";
 
 import { db } from "../firebase";
@@ -77,6 +77,13 @@ export default function CoursesPage() {
         className="fullWidth timetable"
         sx={{ p: 2, boxSizing: "border-box" }}
       >
+        {(isLoading.selected_courses || isLoading.courses) && (
+          <Skeleton
+            variant="rectangular"
+            className="boardPreview"
+            animation="wave"
+          />
+        )}
         {selectedCourses.length > 0 ? (
           <Box>
             {selectedCourses.map((selectedCourse) => {
