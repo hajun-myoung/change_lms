@@ -42,6 +42,8 @@ export default function MainPage() {
     announcement: true,
     prayBoard: true,
     users: true,
+    courses: false,
+    selected_courses: false,
   });
 
   // Modal handlers
@@ -258,15 +260,24 @@ export default function MainPage() {
         <Box
           className="external-linkbox"
           onClick={() => {
-            alert("아직 준비되지 않은 기능입니다");
+            navigation("/timetable");
           }}
         >
           <Box className="external-icon centeralize">
             <SchoolIcon sx={{ color: "#FAC656" }} />
           </Box>
           <Box className="external_description_box">
-            <Typography variant="blacksmall">수강</Typography>
-            <Typography variant="blacksmall">신청</Typography>
+            {user?.is_leader ? (
+              <>
+                <Typography variant="blacksmall">수강</Typography>
+                <Typography variant="blacksmall">신청</Typography>
+              </>
+            ) : (
+              <>
+                <Typography variant="blacksmall">시간표</Typography>
+                <Typography variant="blacksmall">보기</Typography>
+              </>
+            )}
           </Box>
         </Box>
         <Box

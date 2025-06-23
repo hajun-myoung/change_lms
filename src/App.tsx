@@ -9,6 +9,7 @@ import theme from "./theme";
 import PrayBoardPage from "./Pages/PrayBoardPage";
 import PostViewPage from "./Pages/PostViewPage";
 import WorkbookPage from "./Pages/WorkbookPage";
+import CoursesPage from "./Pages/CoursesPage";
 
 function App() {
   return (
@@ -46,6 +47,14 @@ function App() {
               element={
                 <ProtectedRouter>
                   <WorkbookPage />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/courses"
+              element={
+                <ProtectedRouter>
+                  <CoursesPage />
                 </ProtectedRouter>
               }
             />

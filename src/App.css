@@ -274,3 +274,8 @@
   height: 50px;
   margin: 10px;
 }
+
+.timetable {
+  border: 1px #666 solid;
+  border-radius: 10px;
+}

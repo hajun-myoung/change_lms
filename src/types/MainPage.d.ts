@@ -12,4 +12,6 @@ export interface LoadingState {
   announcement: boolean;
   prayBoard: boolean;
   users: boolean;
+  courses: boolean;
+  selected_courses: boolean;
 }
