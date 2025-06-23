@@ -260,7 +260,7 @@ export default function MainPage() {
         <Box
           className="external-linkbox"
           onClick={() => {
-            navigation("/timetable");
+            navigation("/courses");
           }}
         >
           <Box className="external-icon centeralize">
