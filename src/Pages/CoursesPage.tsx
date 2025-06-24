@@ -10,6 +10,7 @@ import type { LoadingState } from "../types/MainPage";
 
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import FloatingHomeButton from "../Components/FloatingHomeButton";
 
 export default function CoursesPage() {
   const [isLoading, setIsLoading] = useState<LoadingState>({
@@ -223,6 +224,7 @@ export default function CoursesPage() {
         졸업 조건이 만족되었습니다
       </Alert>
       */}
+      <FloatingHomeButton />
     </Box>
   );
 }
