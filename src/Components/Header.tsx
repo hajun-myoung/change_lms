@@ -1,7 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useNavigate } from "react-router-dom";
 
 export default function Header({ subtitle }: { subtitle?: string }) {
+  const navigate = useNavigate();
+
   return (
     <Box className="fullWidth header">
       {/* Logo Wrapper */}
@@ -12,6 +15,9 @@ export default function Header({ subtitle }: { subtitle?: string }) {
           justifyContent: "center",
           alignItems: "flex-start",
           flexDirection: "column",
+        }}
+        onClick={() => {
+          navigate("/");
         }}
       >
         <Typography variant="header_small" sx={{ ml: "1px" }}>
