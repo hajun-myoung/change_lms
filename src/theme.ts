@@ -25,6 +25,7 @@ declare module "@mui/material/styles" {
     credit_body1: React.CSSProperties;
     credit_body2: React.CSSProperties;
     success: React.CSSProperties;
+    group_member: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -51,6 +52,7 @@ declare module "@mui/material/styles" {
     credit_body1: React.CSSProperties;
     credit_body2: React.CSSProperties;
     success: React.CSSProperties;
+    group_member: React.CSSProperties;
   }
 }
 
@@ -79,6 +81,7 @@ declare module "@mui/material/Typography" {
     credit_body1: true;
     credit_body2: true;
     success: true;
+    group_member: true;
   }
 }
 
@@ -298,6 +301,12 @@ const theme = createTheme({
       fontFamily: '"Pretendard", sans-serif',
       fontWeight: 400,
       color: "green",
+    },
+    group_member: {
+      fontSize: "14px",
+      color: "#000",
+      fontFamily: '"Pretendard", sans-serif',
+      fontWeight: 400,
     },
   },
 });

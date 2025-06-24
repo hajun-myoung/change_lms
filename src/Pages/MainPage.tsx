@@ -520,7 +520,7 @@ export default function MainPage() {
             <Typography variant="label" sx={{ mr: 1 }}>
               리더
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="group_member">
               {
                 users.filter(
                   (target) =>
@@ -540,7 +540,7 @@ export default function MainPage() {
                     target.group_id == user.group_id && !target.is_leader
                 )
                 .map((user) => (
-                  <Typography variant="body2" sx={{ mr: 0.5 }}>
+                  <Typography variant="group_member" sx={{ mr: 0.5 }}>
                     {user.name}
                   </Typography>
                 ))}
