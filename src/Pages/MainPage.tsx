@@ -464,26 +464,26 @@ export default function MainPage() {
 
         <Box sx={{ p: 2 }}>
           <Box sx={{ display: "flex" }}>
-            <Typography sx={{ mr: 1 }} variant="body2">
+            <Typography sx={{ mr: 1 }} variant="group_member">
               •
             </Typography>
-            <Typography sx={{ whiteSpace: "pre-line" }} variant="body2">
+            <Typography sx={{ whiteSpace: "pre-line" }} variant="group_member">
               오전 8시~밤 11시까지 정의여자고등학교에{"\n"} 주차가 가능합니다.{" "}
             </Typography>
           </Box>
           <Box sx={{ display: "flex" }}>
-            <Typography sx={{ mr: 1 }} variant="body2">
+            <Typography sx={{ mr: 1 }} variant="group_member">
               •
             </Typography>
-            <Typography sx={{ whiteSpace: "pre-line" }} variant="body2">
+            <Typography sx={{ whiteSpace: "pre-line" }} variant="group_member">
               가급적 필로티 건물은 지양해주세요.
             </Typography>
           </Box>
           <Box sx={{ display: "flex" }}>
-            <Typography sx={{ mr: 1 }} variant="body2">
+            <Typography sx={{ mr: 1 }} variant="group_member">
               •
             </Typography>
-            <Typography sx={{ whiteSpace: "pre-line" }} variant="body2">
+            <Typography sx={{ whiteSpace: "pre-line" }} variant="group_member">
               체인지 액팅 때 차량사용이 필요한 경우{"\n"} 윤기헌 전도사에게
               문의해주세요.
             </Typography>
