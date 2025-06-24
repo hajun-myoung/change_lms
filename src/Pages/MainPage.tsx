@@ -3,7 +3,14 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Header from "../Components/Header";
 import { db } from "../firebase";
-import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  orderBy,
+  limit,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Skeleton from "@mui/material/Skeleton";
 import Button from "@mui/material/Button";
@@ -78,7 +85,7 @@ export default function MainPage() {
       setIsLoading((prev) => ({ ...prev, announcement: false }));
 
       setIsLoading((prev) => ({ ...prev, prayBoard: true }));
-      const q2 = query(collection(db, "pray_board"));
+      const q2 = query(collection(db, "pray_board"), limit(10));
       const querySnapshot2 = await getDocs(q2);
 
       if (!querySnapshot2.empty) {
@@ -107,9 +114,10 @@ export default function MainPage() {
     console.log(isLoading);
   }, [isLoading]);
 
-  // useEffect(() => {
-  //   console.log(users);
-  // }, [users]);
+  useEffect(() => {
+    console.log(prays);
+    console.log(prays.length);
+  }, [prays]);
 
   return (
     <Box className="wrapper">
@@ -361,7 +369,7 @@ export default function MainPage() {
         />
       ) : (
         <Box className="boardPreview">
-          {prays ? (
+          {prays.length > 0 ? (
             prays.map((pray) => (
               <Box
                 key={`pray_${pray.created_at}`}
@@ -403,10 +411,12 @@ export default function MainPage() {
             ))
           ) : (
             <Box
-              className="fully_centeralize fullSize"
+              className="fully_centeralize fullWidth"
               sx={{ height: "120px" }}
             >
-              <Typography>No Prays</Typography>
+              <Typography variant="group_member">
+                등록된 기도가 없습니다
+              </Typography>
             </Box>
           )}
         </Box>
