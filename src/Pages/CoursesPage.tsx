@@ -1,11 +1,4 @@
-import {
-  Alert,
-  Box,
-  Card,
-  CardContent,
-  Skeleton,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardContent, Skeleton, Typography } from "@mui/material";
 import Header from "../Components/Header";
 
 import { db } from "../firebase";
@@ -29,6 +22,10 @@ export default function CoursesPage() {
   const [courses, setCourses] = useState<Array<Course>>([]);
   const [courseApplication, setCourseApplication] =
     useState<CourseApplication>();
+  const [gpa, setGpa] = useState<number>(0);
+  const [applicationCredit, setApplicationCredit] = useState<number>(0);
+  const [totalCredit, setTotalCredit] = useState<number>(0);
+
   const { user } = useAuth();
 
   useEffect(() => {
@@ -69,13 +66,48 @@ export default function CoursesPage() {
   //     console.log(courses);
   //   }, [courses]);
 
-  useEffect(() => {
-    console.log(courseApplication);
-  }, [courseApplication]);
+  // useEffect(() => {
+  //   console.log(courseApplication);
+  // }, [courseApplication]);
+
+  // useEffect(() => {
+  //   console.log(user);
+  // }, [user]);
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    const selectedCredits = courseApplication?.acquired_courses.map(
+      (selectedCourse) =>
+        courses.filter((target) => target.code == selectedCourse.code)[0].credit
+    );
+    setTotalCredit(
+      selectedCredits?.reduce((prev, curr) => prev + curr, 0) ?? 0
+    );
+  }, [courseApplication, courses]);
+
+  useEffect(() => {
+    const sum_of_acquired = courseApplication?.acquired_courses.reduce(
+      (prev, curr) =>
+        prev +
+        curr.grade *
+          courses.filter((course) => course.code == curr.code)[0].credit,
+      0
+    );
+
+    const sum_of_application = courseApplication?.selected_courses.reduce(
+      (prev, curr) =>
+        prev + courses.filter((target) => target.code == curr)[0].credit,
+      0
+    );
+
+    setApplicationCredit(sum_of_application ?? 0);
+
+    if (courseApplication?.acquired_courses)
+      setGpa((sum_of_acquired ?? 0) / totalCredit);
+  }, [courseApplication, courses, totalCredit]);
+
+  // useEffect(() => {
+  //   console.log(gpa);
+  // }, [gpa]);
 
   return (
     <Box className="wrapper">
@@ -104,7 +136,10 @@ export default function CoursesPage() {
                 ).length > 0;
 
               return (
-                <Card sx={{ minWidth: 275, mt: 2, position: "relative" }}>
+                <Card
+                  key={`course_${selectedCourse}`}
+                  sx={{ minWidth: 275, mt: 2, position: "relative" }}
+                >
                   {isAcquired && (
                     <Box className="courseMark">
                       <CheckCircleIcon
@@ -160,7 +195,9 @@ export default function CoursesPage() {
               GPA
             </Typography>
             <Box>
-              <Typography variant="credit_body1">4.31</Typography>
+              <Typography variant="credit_body1">
+                {isNaN(gpa) ? 0 : gpa}
+              </Typography>
               <Typography variant="credit_body2"> / 4.5</Typography>
             </Box>
           </Box>
@@ -169,8 +206,11 @@ export default function CoursesPage() {
               취득학점
             </Typography>
             <Box>
-              <Typography variant="credit_body1">23</Typography>
-              <Typography variant="credit_body2"> / 25</Typography>
+              <Typography variant="credit_body1">{totalCredit}</Typography>
+              <Typography variant="credit_body2">
+                {" "}
+                / {applicationCredit}
+              </Typography>
             </Box>
           </Box>
         </Box>
