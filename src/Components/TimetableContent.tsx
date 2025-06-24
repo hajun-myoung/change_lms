@@ -33,11 +33,11 @@ export function TimetableContent() {
               fontWeight: "bold",
               flexShrink: 0,
             }}
-            variant="body2"
+            variant="group_member"
           >
             {item.time}
           </Typography>
-          <Typography sx={{ whiteSpace: "pre-line" }} variant="body2">
+          <Typography sx={{ whiteSpace: "pre-line" }} variant="group_member">
             {item.content}
           </Typography>
         </Box>
