@@ -279,3 +279,15 @@
   border: 1px #666 solid;
   border-radius: 10px;
 }
+
+.courseCard {
+  padding: 12px !important;
+}
+
+.courseMark {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  display: flex;
+  align-items: center;
+}

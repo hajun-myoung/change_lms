@@ -5,8 +5,13 @@ export interface Course {
   is_essential: boolean;
 }
 
+interface AcquiredCourse {
+  code: string;
+  grade: number;
+}
+
 export interface CourseApplication {
   group_id: number;
   selected_courses: Array<string>;
-  acquired_courses: Array<string>;
+  acquired_courses: Array<AcquiredCourse>;
 }

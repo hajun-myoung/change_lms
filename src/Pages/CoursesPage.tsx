@@ -1,4 +1,11 @@
-import { Box, Card, CardContent, Skeleton, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Card,
+  CardContent,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import Header from "../Components/Header";
 
 import { db } from "../firebase";
@@ -9,6 +16,7 @@ import { useAuth } from "../Contexts/AuthContexts";
 import type { LoadingState } from "../types/MainPage";
 
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 export default function CoursesPage() {
   const [isLoading, setIsLoading] = useState<LoadingState>({
@@ -19,7 +27,8 @@ export default function CoursesPage() {
     selected_courses: true,
   });
   const [courses, setCourses] = useState<Array<Course>>([]);
-  const [selectedCourses, setSelectedCourses] = useState<Array<string>>([]);
+  const [courseApplication, setCourseApplication] =
+    useState<CourseApplication>();
   const { user } = useAuth();
 
   useEffect(() => {
@@ -45,9 +54,7 @@ export default function CoursesPage() {
 
       if (!selectedCourseSnapshot.empty) {
         selectedCourseSnapshot.docs.map((doc) => {
-          setSelectedCourses(
-            (doc.data() as CourseApplication).selected_courses
-          );
+          setCourseApplication(doc.data() as CourseApplication);
         });
       } else {
         console.log("[Warning]No accouncements has been queried");
@@ -63,8 +70,8 @@ export default function CoursesPage() {
   //   }, [courses]);
 
   useEffect(() => {
-    console.log(selectedCourses);
-  }, [selectedCourses]);
+    console.log(courseApplication);
+  }, [courseApplication]);
 
   useEffect(() => {
     console.log(user);
@@ -84,25 +91,37 @@ export default function CoursesPage() {
             animation="wave"
           />
         )}
-        {selectedCourses.length > 0 ? (
+        {(courseApplication?.selected_courses?.length ?? 0) > 0 ? (
           <Box>
-            {selectedCourses.map((selectedCourse) => {
+            {courseApplication?.selected_courses.map((selectedCourse) => {
               const course = courses.filter(
                 (target) => target.code == selectedCourse
               )[0];
+
+              const isAcquired =
+                courseApplication?.acquired_courses.filter(
+                  (acquired_course) => acquired_course.code == selectedCourse
+                ).length > 0;
+
               return (
-                <Card sx={{ minWidth: 275 }}>
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      sx={{ color: "text.secondary", fontSize: 14 }}
-                    >
+                <Card sx={{ minWidth: 275, mt: 2, position: "relative" }}>
+                  {isAcquired && (
+                    <Box className="courseMark">
+                      <CheckCircleIcon
+                        fontSize="small"
+                        sx={{ color: "rgb(78, 137, 82)" }}
+                      />
+                      <Typography variant="success">수료함</Typography>
+                    </Box>
+                  )}
+                  <CardContent className="courseCard">
+                    <Typography sx={{ color: "text.secondary", fontSize: 12 }}>
                       {course?.code}
                     </Typography>
                     <Typography variant="h5" component="div">
                       {course?.title}
                     </Typography>
-                    <Typography sx={{ color: "text.secondary" }}>
+                    <Typography variant="h6" sx={{ color: "text.secondary" }}>
                       {course?.is_essential ? "전공필수" : "전공선택"} |{" "}
                       {course?.credit}학점
                     </Typography>
@@ -117,7 +136,7 @@ export default function CoursesPage() {
           </Box>
         )}
         <Box className="fullWidth fully_centeralize" sx={{ mt: 2 }}>
-          <AddCircleIcon sx={{ mr: 1 }} />
+          <AddCircleIcon sx={{ mr: 1, color: "#FFF" }} />
           <Typography variant="body2">수강 신청하기</Typography>
         </Box>
       </Box>
@@ -156,6 +175,14 @@ export default function CoursesPage() {
           </Box>
         </Box>
       </Box>
+      {/* 
+      <Alert sx={{ mt: 2 }} severity="error">
+        필수 학점이 충분하지 않습니다
+      </Alert>
+      <Alert sx={{ mt: 2 }} severity="success">
+        졸업 조건이 만족되었습니다
+      </Alert>
+      */}
     </Box>
   );
 }
