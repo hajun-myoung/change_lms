@@ -77,8 +77,18 @@ export default function CoursesPage() {
 
   useEffect(() => {
     const selectedCredits = courseApplication?.acquired_courses.map(
-      (selectedCourse) =>
-        courses.filter((target) => target.code == selectedCourse.code)[0].credit
+      (selectedCourse) => {
+        try {
+          return courses.filter(
+            (target) => target.code == selectedCourse.code
+          )[0].credit;
+        } catch {
+          console.log(
+            courses.filter((target) => target.code == selectedCourse.code)[0]
+          );
+          return 0;
+        }
+      }
     );
     setTotalCredit(
       selectedCredits?.reduce((prev, curr) => prev + curr, 0) ?? 0
@@ -87,23 +97,35 @@ export default function CoursesPage() {
 
   useEffect(() => {
     const sum_of_acquired = courseApplication?.acquired_courses.reduce(
-      (prev, curr) =>
-        prev +
-        curr.grade *
-          courses.filter((course) => course.code == curr.code)[0].credit,
+      (prev, curr) => {
+        const newValue =
+          prev +
+          curr.grade *
+            courses.filter((course) => course.code == curr.code)[0].credit;
+        return isNaN(newValue) ? prev : newValue;
+      },
       0
     );
 
     const sum_of_application = courseApplication?.selected_courses.reduce(
-      (prev, curr) =>
-        prev + courses.filter((target) => target.code == curr)[0].credit,
+      (prev, curr) => {
+        try {
+          return (
+            prev + courses.filter((target) => target.code == curr)[0].credit
+          );
+        } catch {
+          console.log(courses.filter((target) => target.code == curr)[0]);
+          return prev;
+        }
+      },
       0
     );
 
     setApplicationCredit(sum_of_application ?? 0);
 
-    if (courseApplication?.acquired_courses)
+    if (courseApplication?.acquired_courses) {
       setGpa((sum_of_acquired ?? 0) / totalCredit);
+    }
   }, [courseApplication, courses, totalCredit]);
 
   // useEffect(() => {
