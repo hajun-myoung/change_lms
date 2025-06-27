@@ -1,16 +1,109 @@
-import { Box, Card, CardContent, Skeleton, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Dialog,
+  DialogTitle,
+  List,
+  ListItem,
+  ListItemText,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import Header from "../Components/Header";
 
 import { db } from "../firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import {
+  doc,
+  updateDoc,
+  arrayUnion,
+  collection,
+  query,
+  where,
+  getDocs,
+  orderBy,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import type { Course, CourseApplication } from "../types/Course";
 import { useAuth } from "../Contexts/AuthContexts";
 import type { LoadingState } from "../types/MainPage";
+import { useNavigate } from "react-router-dom";
 
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import FloatingHomeButton from "../Components/FloatingHomeButton";
+
+const SearchCourseModal = ({
+  groupDocId,
+  onClose,
+  selectedCourses,
+}: {
+  groupDocId: string | null;
+  onClose: () => void;
+  selectedCourses: Array<string>;
+}) => {
+  const [query] = useState<string>("");
+  const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
+
+  const navigation = useNavigate();
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const snapshot = await getDocs(collection(db, "courses"));
+      const data = snapshot.docs.map((doc) => ({
+        ...(doc.data() as Course),
+        id: doc.id,
+      }));
+      setFilteredCourses(
+        data.filter(
+          (c) =>
+            c.title.includes(query) ||
+            c.id.toLowerCase().includes(query.toLowerCase())
+        )
+      );
+    };
+    fetchCourses();
+  }, [query]);
+
+  const applyCourse = async (courseId: string) => {
+    if (!groupDocId) {
+      alert("그룹 문서 ID가 없습니다.");
+      return;
+    }
+    const groupRef = doc(db, "course_application", groupDocId);
+    await updateDoc(groupRef, {
+      selected_courses: arrayUnion(courseId),
+    });
+    alert("신청 완료!");
+    window.location.reload();
+  };
+
+  return (
+    <Dialog open onClose={onClose}>
+      <DialogTitle sx={{ pl: 2, pr: 2, pb: 0 }}>수강 신청</DialogTitle>
+      <List>
+        {filteredCourses.map((course) => (
+          <ListItem key={course.code} sx={{ p: 0, pl: 2, pr: 2 }}>
+            <ListItemText
+              primary={course.title}
+              secondary={`${course.professor} | ${course.credit}학점`}
+            />
+            <Button
+              sx={{ minWidth: "66.05px" }}
+              onClick={() => applyCourse(course.code)}
+              disabled={selectedCourses.includes(course.code)}
+            >
+              {selectedCourses.includes(course.code)
+                ? "이미 신청됨"
+                : "신청하기"}
+            </Button>
+          </ListItem>
+        ))}
+      </List>
+    </Dialog>
+  );
+};
 
 export default function CoursesPage() {
   const [isLoading, setIsLoading] = useState<LoadingState>({
@@ -26,13 +119,37 @@ export default function CoursesPage() {
   const [gpa, setGpa] = useState<number>(0);
   const [applicationCredit, setApplicationCredit] = useState<number>(0);
   const [totalCredit, setTotalCredit] = useState<number>(0);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [groupDocId, setGroupDocId] = useState<string | null>(null);
 
   const { user } = useAuth();
+
+  const getGroupDocIdByGroupId = async (groupId: number) => {
+    const q = query(
+      collection(db, "course_application"),
+      where("group_id", "==", groupId)
+    );
+    const snapshot = await getDocs(q);
+    return snapshot.empty ? null : snapshot.docs[0].id;
+  };
+
+  useEffect(() => {
+    const fetchGroupDocId = async () => {
+      if (user?.group_id) {
+        const id = await getGroupDocIdByGroupId(user.group_id);
+        setGroupDocId(id);
+      }
+    };
+    fetchGroupDocId();
+  }, [user]);
 
   useEffect(() => {
     const fetchAssignments = async () => {
       setIsLoading((prev) => ({ ...prev, courses: true }));
-      const courseQuery = query(collection(db, "courses"));
+      const courseQuery = query(
+        collection(db, "courses"),
+        orderBy("code", "asc")
+      );
       const courseSnapshot = await getDocs(courseQuery);
 
       if (!courseSnapshot.empty) {
@@ -193,7 +310,13 @@ export default function CoursesPage() {
             <Typography>선택된 강의 없음</Typography>
           </Box>
         )}
-        <Box className="fullWidth fully_centeralize" sx={{ mt: 2 }}>
+        <Box
+          className="fullWidth fully_centeralize"
+          sx={{ mt: 2 }}
+          onClick={() => {
+            setModalOpen(true);
+          }}
+        >
           <AddCircleIcon sx={{ mr: 1, color: "#FFF" }} />
           <Typography variant="body2">수강 신청하기</Typography>
         </Box>
@@ -246,7 +369,15 @@ export default function CoursesPage() {
         졸업 조건이 만족되었습니다
       </Alert>
       */}
-      <FloatingHomeButton />
+
+      {/* 수강신청 모달창 */}
+      {modalOpen && (
+        <SearchCourseModal
+          groupDocId={groupDocId}
+          onClose={() => setModalOpen(false)}
+          selectedCourses={courseApplication?.selected_courses ?? []}
+        />
+      )}
     </Box>
   );
 }
