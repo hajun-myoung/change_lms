@@ -727,7 +727,7 @@ export default function MainPage() {
       >
         <Box sx={{ height: "2.4vw" }}>
           <Typography variant="footerinfo">
-            Ver0.5.1 | Copyright @DENVER | Design assisted by Sandy, Lim.
+            Ver1.0.0 | Copyright @DENVER | Design assisted by Sandy, Lim.
             Eunseo, Choo.
           </Typography>
         </Box>
