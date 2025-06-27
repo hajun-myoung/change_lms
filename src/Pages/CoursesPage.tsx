@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Card,
@@ -24,7 +25,7 @@ import {
   getDocs,
   orderBy,
 } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { Course, CourseApplication } from "../types/Course";
 import { useAuth } from "../Contexts/AuthContexts";
 import type { LoadingState } from "../types/MainPage";
@@ -41,26 +42,16 @@ const SearchCourseModal = ({
   onClose: () => void;
   selectedCourses: Array<string>;
 }) => {
-  const [query] = useState<string>("");
-  const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
+  const [courses, setCourses] = useState<Array<Course>>([]);
 
   useEffect(() => {
     const fetchCourses = async () => {
       const snapshot = await getDocs(collection(db, "courses"));
-      const data = snapshot.docs.map((doc) => ({
-        ...(doc.data() as Course),
-        id: doc.id,
-      }));
-      setFilteredCourses(
-        data.filter(
-          (c) =>
-            c.title.includes(query) ||
-            c.id.toLowerCase().includes(query.toLowerCase())
-        )
-      );
+      const data = snapshot.docs.map((doc) => doc.data() as Course);
+      setCourses(data);
     };
     fetchCourses();
-  }, [query]);
+  }, []);
 
   const applyCourse = async (courseId: string) => {
     if (!groupDocId) {
@@ -76,17 +67,28 @@ const SearchCourseModal = ({
   };
 
   return (
-    <Dialog open onClose={onClose}>
-      <DialogTitle sx={{ pl: 2, pr: 2, pb: 0 }}>수강 신청</DialogTitle>
+    <Dialog open onClose={onClose} fullWidth>
+      <DialogTitle sx={{ pl: 2, pr: 2, pb: 0, whiteSpace: "pre-line" }}>
+        수강 신청
+      </DialogTitle>
       <List>
-        {filteredCourses.map((course) => (
-          <ListItem key={course.code} sx={{ p: 0, pl: 2, pr: 2 }}>
-            <ListItemText
-              primary={course.title}
-              secondary={`${course.professor} | ${course.credit}학점`}
-            />
+        {courses.map((course) => (
+          <ListItem
+            key={course.code}
+            className="course_modal_list_wrapper"
+            sx={{ p: 0, pl: 2, pr: 2, width: "100%" }}
+          >
+            <Box
+              className="fullWidth"
+              sx={{ display: "flex", justifyContent: "space-between" }}
+            >
+              <ListItemText
+                primary={course.title}
+                secondary={`${course.professor} | ${course.credit}학점`}
+              />
+            </Box>
             <Button
-              sx={{ minWidth: "66.05px" }}
+              sx={{ width: "auto", minWidth: "85px" }}
               onClick={() => applyCourse(course.code)}
               disabled={selectedCourses.includes(course.code)}
             >
@@ -241,6 +243,8 @@ export default function CoursesPage() {
     }
   }, [courseApplication, courses, totalCredit]);
 
+  // const handleCancelCourse = useCallback(() => {});
+
   // useEffect(() => {
   //   console.log(gpa);
   // }, [gpa]);
@@ -261,6 +265,7 @@ export default function CoursesPage() {
         )}
         {(courseApplication?.selected_courses?.length ?? 0) > 0 ? (
           <Box>
+            <Alert severity="error">강의를 클릭하시면 취소가 가능합니다</Alert>
             {courseApplication?.selected_courses.map((selectedCourse) => {
               const course = courses.filter(
                 (target) => target.code == selectedCourse
@@ -275,6 +280,7 @@ export default function CoursesPage() {
                 <Card
                   key={`course_${selectedCourse}`}
                   sx={{ minWidth: 275, mt: 2, position: "relative" }}
+                  // onClick={handleCancelCourse}
                 >
                   {isAcquired && (
                     <Box className="courseMark">
@@ -289,7 +295,11 @@ export default function CoursesPage() {
                     <Typography sx={{ color: "text.secondary", fontSize: 12 }}>
                       {course?.code}
                     </Typography>
-                    <Typography variant="h5" component="div">
+                    <Typography
+                      variant="h5"
+                      component="div"
+                      sx={{ whiteSpace: "pre-line" }}
+                    >
                       {course?.title}
                     </Typography>
                     <Typography variant="h6" sx={{ color: "text.secondary" }}>

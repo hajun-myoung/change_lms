@@ -105,6 +105,20 @@ declare module "@mui/material/Typography" {
 
 const theme = createTheme({
   components: {
+    MuiListItemText: {
+      styleOverrides: {
+        primary: {
+          fontSize: "1rem",
+          fontWeight: 600,
+          color: "#333",
+          whiteSpace: "pre-line",
+        },
+        secondary: {
+          fontSize: "0.875rem",
+          color: "#666",
+        },
+      },
+    },
     MuiTextField: {
       defaultProps: {
         variant: "standard",

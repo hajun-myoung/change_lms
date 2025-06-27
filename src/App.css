@@ -349,3 +349,7 @@
 .label {
   min-width: 28px;
 }
+
+.course_modal_list_wrapper {
+  border-bottom: 0.5px grey solid;
+}
