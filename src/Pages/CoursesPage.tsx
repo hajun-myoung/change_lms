@@ -4,7 +4,6 @@ import {
   Button,
   ButtonBase,
   Card,
-  CardActions,
   CardContent,
   Dialog,
   DialogTitle,
@@ -28,7 +27,7 @@ import {
   getDocs,
   orderBy,
 } from "firebase/firestore";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Course, CourseApplication } from "../types/Course";
 import { useAuth } from "../Contexts/AuthContexts";
 import type { LoadingState } from "../types/MainPage";
