@@ -19,20 +19,21 @@ import {
   Skeleton,
 } from "@mui/material";
 
+import img_ghyoon from "../assets/ghyoon.jpg";
+import img_japark from "../assets/japark.png";
+import img_jhryu from "../assets/jhryu.png";
+import img_sdkim from "../assets/sdkim.jpg";
+
 export default function SyllabusDetailPage() {
   const { id } = useParams<{ id: string }>();
   const [course, setCourse] = useState<Course | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const imageMap = {
-    "박정아 목사":
-      "http://www.jeongeui.com/user/saveDir/awc/49/P/0/image_124013.png?itemTime=1745303224",
-    "윤기헌 전도사":
-      "http://www.jeongeui.com/user/saveDir/awc/49/P/0/image_124010.jpg?itemTime=1745303224",
-    "유제홍 목사":
-      "http://www.jeongeui.com/user/saveDir/awc/49/P/0/image_123997.png?itemTime=1745303224",
-    "김선동 목사":
-      "http://www.jeongeui.com/user/saveDir/awc/14/P/0/image_122903.jpg?itemTime=1738823671",
+    "박정아 목사": img_japark,
+    "윤기헌 전도사": img_ghyoon,
+    "유제홍 목사": img_jhryu,
+    "김선동 목사": img_sdkim,
   };
 
   useEffect(() => {

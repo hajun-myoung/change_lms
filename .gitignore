@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 
 .env
+
+src/assets/ghyoon.jpg
+src/assets/japark.png
+src/assets/jhryu.png
+src/assets/sdkim.jpg
