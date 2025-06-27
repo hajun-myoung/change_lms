@@ -2,7 +2,9 @@ import {
   Alert,
   Box,
   Button,
+  ButtonBase,
   Card,
+  CardActions,
   CardContent,
   Dialog,
   DialogTitle,
@@ -19,6 +21,7 @@ import {
   doc,
   updateDoc,
   arrayUnion,
+  arrayRemove,
   collection,
   query,
   where,
@@ -243,7 +246,18 @@ export default function CoursesPage() {
     }
   }, [courseApplication, courses, totalCredit]);
 
-  // const handleCancelCourse = useCallback(() => {});
+  const handleCancelCourse = async (courseId: string) => {
+    if (!groupDocId) {
+      alert("그룹 문서 ID가 없습니다.");
+      return;
+    }
+    const groupRef = doc(db, "course_application", groupDocId);
+    await updateDoc(groupRef, {
+      selected_courses: arrayRemove(courseId),
+    });
+    alert("삭제 완료!");
+    window.location.reload();
+  };
 
   // useEffect(() => {
   //   console.log(gpa);
@@ -280,7 +294,6 @@ export default function CoursesPage() {
                 <Card
                   key={`course_${selectedCourse}`}
                   sx={{ minWidth: 275, mt: 2, position: "relative" }}
-                  // onClick={handleCancelCourse}
                 >
                   {isAcquired && (
                     <Box className="courseMark">
@@ -291,22 +304,30 @@ export default function CoursesPage() {
                       <Typography variant="success">수료함</Typography>
                     </Box>
                   )}
-                  <CardContent className="courseCard">
-                    <Typography sx={{ color: "text.secondary", fontSize: 12 }}>
-                      {course?.code}
-                    </Typography>
-                    <Typography
-                      variant="h5"
-                      component="div"
-                      sx={{ whiteSpace: "pre-line" }}
-                    >
-                      {course?.title}
-                    </Typography>
-                    <Typography variant="h6" sx={{ color: "text.secondary" }}>
-                      {course?.required ? "전공필수" : "전공선택"} |{" "}
-                      {course?.credit}학점
-                    </Typography>
-                  </CardContent>
+                  <ButtonBase
+                    onClick={() => {
+                      handleCancelCourse(course.code);
+                    }}
+                  >
+                    <CardContent className="courseCard">
+                      <Typography
+                        sx={{ color: "text.secondary", fontSize: 12 }}
+                      >
+                        {course?.code}
+                      </Typography>
+                      <Typography
+                        variant="h5"
+                        component="div"
+                        sx={{ whiteSpace: "pre-line" }}
+                      >
+                        {course?.title}
+                      </Typography>
+                      <Typography variant="h6" sx={{ color: "text.secondary" }}>
+                        {course?.required ? "전공필수" : "전공선택"} |{" "}
+                        {course?.credit}학점
+                      </Typography>
+                    </CardContent>
+                  </ButtonBase>
                 </Card>
               );
             })}
