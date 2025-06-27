@@ -28,11 +28,9 @@ import { useEffect, useState } from "react";
 import type { Course, CourseApplication } from "../types/Course";
 import { useAuth } from "../Contexts/AuthContexts";
 import type { LoadingState } from "../types/MainPage";
-import { useNavigate } from "react-router-dom";
 
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import FloatingHomeButton from "../Components/FloatingHomeButton";
 
 const SearchCourseModal = ({
   groupDocId,
@@ -45,8 +43,6 @@ const SearchCourseModal = ({
 }) => {
   const [query] = useState<string>("");
   const [filteredCourses, setFilteredCourses] = useState<Course[]>([]);
-
-  const navigation = useNavigate();
 
   useEffect(() => {
     const fetchCourses = async () => {
