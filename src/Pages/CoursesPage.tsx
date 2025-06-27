@@ -180,7 +180,7 @@ export default function CoursesPage() {
                       {course?.title}
                     </Typography>
                     <Typography variant="h6" sx={{ color: "text.secondary" }}>
-                      {course?.is_essential ? "전공필수" : "전공선택"} |{" "}
+                      {course?.required ? "전공필수" : "전공선택"} |{" "}
                       {course?.credit}학점
                     </Typography>
                   </CardContent>
