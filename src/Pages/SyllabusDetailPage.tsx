@@ -4,6 +4,7 @@ import Alert from "@mui/material/Alert";
 import { useParams } from "react-router-dom";
 import Header from "../Components/Header";
 
+import ReactMarkdown from "react-markdown";
 import { db } from "../firebase";
 import { collection, query, getDocs, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -90,6 +91,7 @@ export default function SyllabusDetailPage() {
               </Table>
             </TableContainer>
           </Box>
+
           {/* 강의담당자 */}
           <Box className="fullWidth section">
             <Typography sx={{ mb: 1, mt: 1 }}>강의담당자</Typography>
@@ -140,6 +142,102 @@ export default function SyllabusDetailPage() {
                 </TableContainer>
               </Box>
             </Box>
+          </Box>
+
+          {/* 수업방법 */}
+          <Box className="fullWidth section">
+            <ReactMarkdown
+              components={{
+                p: ({ children }) => (
+                  <Typography variant="syllabus_detail_paragraph">
+                    {children}
+                  </Typography>
+                ),
+                h3: ({ children }) => (
+                  <Typography
+                    // variant="syllabus_detail_header"
+                    fontWeight="bold"
+                  >
+                    {children}
+                  </Typography>
+                ),
+                li: ({ children }) => (
+                  <li style={{ textAlign: "left" }}>
+                    <Typography
+                      component="span" // 핵심!
+                      variant="syllabus_detail_paragraph"
+                    >
+                      {children}
+                    </Typography>
+                  </li>
+                ),
+                ol: ({ children }) => (
+                  <Box
+                    component="ol"
+                    sx={{
+                      pl: 2,
+                      color: "#FFF",
+                      margin: 0,
+                    }}
+                  >
+                    {children}
+                  </Box>
+                ),
+                ul: ({ children }) => (
+                  <Box
+                    component="ul"
+                    sx={{
+                      color: "#FFF",
+                      margin: 0,
+                    }}
+                  >
+                    {children}
+                  </Box>
+                ),
+              }}
+            >
+              {course.description}
+            </ReactMarkdown>
+          </Box>
+
+          {/* 활동 방법 */}
+          <Box className="fullWidth section">
+            <Typography>활동 방법</Typography>
+            {course?.activities?.map((activity, idx) => (
+              <Box key={idx} className="fullWidth activitySection">
+                <Typography variant="course_detail_title">
+                  {activity.section_title}
+                </Typography>
+                <ReactMarkdown
+                  components={{
+                    ul: ({ children }) => (
+                      <Box
+                        component="ul"
+                        sx={{
+                          color: "#FFF",
+                          margin: 0,
+                          pl: 2,
+                        }}
+                      >
+                        {children}
+                      </Box>
+                    ),
+                    li: ({ children }) => (
+                      <li style={{ textAlign: "left" }}>
+                        <Typography
+                          component="span" // 핵심!
+                          variant="syllabus_detail_paragraph"
+                        >
+                          {children}
+                        </Typography>
+                      </li>
+                    ),
+                  }}
+                >
+                  {activity.content}
+                </ReactMarkdown>
+              </Box>
+            ))}
           </Box>
         </Box>
       )}
