@@ -1,8 +1,15 @@
+interface CourseActivityContent {
+  section_title: string;
+  content: string;
+}
+
 export interface Course {
   code: string;
   title: string;
   credit: number;
-  is_essential: boolean;
+  required: boolean;
+  description: string;
+  activities: Array<CourseActivityContent>;
 }
 
 interface AcquiredCourse {
