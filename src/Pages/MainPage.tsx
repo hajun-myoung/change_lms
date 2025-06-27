@@ -10,6 +10,8 @@ import {
   getDocs,
   orderBy,
   limit,
+  doc,
+  getDoc,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Skeleton from "@mui/material/Skeleton";
@@ -34,7 +36,7 @@ import DirectionsCarFilledTwoToneIcon from "@mui/icons-material/DirectionsCarFil
 import parkingLocationImage from "../assets/parking_map.png";
 
 import type { Announcement, LoadingState } from "../types/MainPage";
-import type { Pray, User } from "../types/Common";
+import type { Pray, User, Configure } from "../types/Common";
 
 import { TimetableContent } from "../Components/TimetableContent";
 import Advertisement from "../Components/Advertisement";
@@ -52,6 +54,7 @@ export default function MainPage() {
     courses: false,
     selected_courses: false,
   });
+  const [configure, setConfigure] = useState<Configure>();
 
   // Modal handlers
   const [groupViewOpen, setGroupViewOpen] = useState<boolean>(false);
@@ -66,6 +69,15 @@ export default function MainPage() {
 
   useEffect(() => {
     const fetchAssignments = async () => {
+      const docRef = doc(db, "configure", "global");
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        const flags = snapshot.data();
+        setConfigure(flags as Configure);
+      } else {
+        console.warn("기능 설정이 존재하지 않음");
+      }
+
       setIsLoading((prev) => ({ ...prev, announcement: true }));
       const q = query(
         collection(db, "announcements"),
@@ -509,6 +521,9 @@ export default function MainPage() {
         onClose={() => setGroupViewOpen(false)}
         fullWidth
         maxWidth="sm"
+        sx={{
+          filter: configure?.enable_group_view ? "" : "blur(5px)",
+        }}
       >
         <DialogTitle sx={{ m: 0, p: 2 }}>
           우리조 보기

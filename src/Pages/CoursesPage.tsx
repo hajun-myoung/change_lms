@@ -26,6 +26,7 @@ import {
   where,
   getDocs,
   orderBy,
+  getDoc,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import type { Course, CourseApplication } from "../types/Course";
@@ -34,15 +35,18 @@ import type { LoadingState } from "../types/MainPage";
 
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import type { Configure } from "../types/Common";
 
 const SearchCourseModal = ({
   groupDocId,
   onClose,
   selectedCourses,
+  configure,
 }: {
   groupDocId: string | null;
   onClose: () => void;
   selectedCourses: Array<string>;
+  configure: Configure;
 }) => {
   const [courses, setCourses] = useState<Array<Course>>([]);
 
@@ -56,6 +60,10 @@ const SearchCourseModal = ({
   }, []);
 
   const applyCourse = async (courseId: string) => {
+    if (!configure.enable_course_apply) {
+      alert("수강신청 가능시간이 아닙니다");
+      return;
+    }
     if (!groupDocId) {
       alert("그룹 문서 ID가 없습니다.");
       return;
@@ -121,6 +129,7 @@ export default function CoursesPage() {
   const [totalCredit, setTotalCredit] = useState<number>(0);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [groupDocId, setGroupDocId] = useState<string | null>(null);
+  const [configure, setConfigure] = useState<Configure>();
 
   const { user } = useAuth();
 
@@ -145,6 +154,15 @@ export default function CoursesPage() {
 
   useEffect(() => {
     const fetchAssignments = async () => {
+      const docRef = doc(db, "configure", "global");
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        const flags = snapshot.data();
+        setConfigure(flags as Configure);
+      } else {
+        console.warn("기능 설정이 존재하지 않음");
+      }
+
       setIsLoading((prev) => ({ ...prev, courses: true }));
       const courseQuery = query(
         collection(db, "courses"),
@@ -405,11 +423,12 @@ export default function CoursesPage() {
       */}
 
       {/* 수강신청 모달창 */}
-      {modalOpen && (
+      {modalOpen && configure && (
         <SearchCourseModal
           groupDocId={groupDocId}
           onClose={() => setModalOpen(false)}
           selectedCourses={courseApplication?.selected_courses ?? []}
+          configure={configure}
         />
       )}
     </Box>

@@ -2,13 +2,20 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Header from "../Components/Header";
 import { db } from "../firebase";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { useState } from "react";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useAuth } from "../Contexts/AuthContexts";
 import { createTheme, ThemeProvider, useTheme } from "@mui/material";
+import type { Configure } from "../types/Common";
 
 export default function PrayCreatePage() {
   const [title, setTitle] = useState("");
@@ -17,7 +24,28 @@ export default function PrayCreatePage() {
   const navigate = useNavigate();
   const { user } = useAuth();
 
+  const [configure, setConfigure] = useState<Configure>();
+
+  useEffect(() => {
+    const fetchAssignments = async () => {
+      const docRef = doc(db, "configure", "global");
+      const snapshot = await getDoc(docRef);
+      if (snapshot.exists()) {
+        const flags = snapshot.data();
+        setConfigure(flags as Configure);
+      } else {
+        console.warn("기능 설정이 존재하지 않음");
+      }
+    };
+
+    fetchAssignments();
+  }, []);
+
   const handleSubmit = async () => {
+    if (!configure?.enable_pray_write) {
+      alert("등록 가능 상태가 아닙니다(관리자 권한)");
+      return;
+    }
     if (!title || !content || !user) return;
     setIsSubmitting(true);
     await addDoc(collection(db, "pray_board"), {

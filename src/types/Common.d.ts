@@ -13,3 +13,9 @@ export interface User {
   is_admin: boolean;
   is_leader: boolean;
 }
+
+export interface Configure {
+  enable_group_view: boolean;
+  enable_pray_write: boolean;
+  enable_course_apply: boolean;
+}
