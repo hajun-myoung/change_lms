@@ -15,7 +15,6 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../Contexts/AuthContexts";
-import type { Course } from "../types/Course";
 import Header from "../Components/Header";
 import type { User } from "../types/Common";
 

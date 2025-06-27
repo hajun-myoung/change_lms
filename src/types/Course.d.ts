@@ -15,7 +15,7 @@ export interface Course {
 }
 
 interface AcquiredCourse {
-  code: string;
+  course_id: string;
   grade: number;
 }
 

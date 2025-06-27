@@ -15,6 +15,7 @@ import AnnouncementViewPage from "./Pages/AnnouncementViewPage";
 import PrayViewPage from "./Pages/PrayViewPage";
 import PrayCreatePage from "./Pages/PrayCreatePage";
 import CourseStatusPage from "./Pages/CourseStatusPage";
+import CourseGradingPage from "./Pages/CourseGradingPage";
 
 function App() {
   return (
@@ -100,6 +101,14 @@ function App() {
               element={
                 <ProtectedRouter>
                   <CourseStatusPage />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/course_grading"
+              element={
+                <ProtectedRouter>
+                  <CourseGradingPage />
                 </ProtectedRouter>
               }
             />

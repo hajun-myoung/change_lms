@@ -215,11 +215,13 @@ export default function CoursesPage() {
       (selectedCourse) => {
         try {
           return courses.filter(
-            (target) => target.code == selectedCourse.code
+            (target) => target.code == selectedCourse.course_id
           )[0].credit;
         } catch {
           console.log(
-            courses.filter((target) => target.code == selectedCourse.code)[0]
+            courses.filter(
+              (target) => target.code == selectedCourse.course_id
+            )[0]
           );
           return 0;
         }
@@ -231,12 +233,14 @@ export default function CoursesPage() {
   }, [courseApplication, courses]);
 
   useEffect(() => {
+    // console.log(courseApplication);
     const sum_of_acquired = courseApplication?.acquired_courses.reduce(
       (prev, curr) => {
         const newValue =
           prev +
           curr.grade *
-            courses.filter((course) => course.code == curr.code)[0].credit;
+            courses.filter((course) => course.code == curr.course_id)[0].credit;
+        console.log(curr.course_id);
         return isNaN(newValue) ? prev : newValue;
       },
       0
@@ -304,7 +308,8 @@ export default function CoursesPage() {
 
               const isAcquired =
                 courseApplication?.acquired_courses.filter(
-                  (acquired_course) => acquired_course.code == selectedCourse
+                  (acquired_course) =>
+                    acquired_course.course_id == selectedCourse
                 ).length > 0;
 
               return (
