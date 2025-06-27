@@ -16,6 +16,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Skeleton,
 } from "@mui/material";
 
 export default function SyllabusDetailPage() {
@@ -56,6 +57,14 @@ export default function SyllabusDetailPage() {
   return (
     <Box className="wrapper">
       <Header subtitle={id} />
+      {isLoading && (
+        <Skeleton
+          variant="rectangular"
+          className="boardPreview skeleton_style"
+          animation="wave"
+          sx={{ height: "200px" }}
+        />
+      )}
       {course && (
         <Box className="course_detail fullWidth">
           <Typography variant="course_detail_title">
@@ -94,7 +103,7 @@ export default function SyllabusDetailPage() {
 
           {/* 강의담당자 */}
           <Box className="fullWidth section">
-            <Typography sx={{ mb: 1, mt: 1 }}>강의담당자</Typography>
+            <Typography sx={{ mb: 1, mt: 1 }}>지도교수</Typography>
             <Box className="fullWidth flex-left">
               <Box sx={{ width: "25%" }}>
                 <img
