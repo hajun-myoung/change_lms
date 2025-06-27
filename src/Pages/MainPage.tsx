@@ -458,7 +458,7 @@ export default function MainPage() {
                     }}
                   >
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                      <Box sx={{ marginRight: 1 }}>
+                      <Box sx={{ marginRight: 1, maxWidth: "100px" }}>
                         <Typography variant="boardPreview_title">
                           {pray.title}
                         </Typography>
