@@ -16,6 +16,7 @@ import type { Pray, User } from "../types/Common";
 import Advertisement from "../Components/Advertisement";
 import { Skeleton } from "@mui/material";
 import FloatingHomeButton from "../Components/FloatingHomeButton";
+import CreateIcon from "@mui/icons-material/Create";
 
 export default function PrayBoardPage() {
   const [prays, setPrays] = useState<Array<Pray>>([]);
@@ -111,6 +112,16 @@ export default function PrayBoardPage() {
       )}
       {/* Floating Home Button */}
       <FloatingHomeButton />
+
+      {/* 새 기도제목 작성버튼 */}
+      <Box
+        className="rightBottom_floating fully_centeralize homebutton"
+        onClick={() => {
+          navigation("/pray/create");
+        }}
+      >
+        <CreateIcon fontSize="large" sx={{ color: "#1a1c21" }} />
+      </Box>
     </Box>
   );
 }
