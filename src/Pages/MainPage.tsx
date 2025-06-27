@@ -513,7 +513,7 @@ export default function MainPage() {
           우리조 보기
           <IconButton
             aria-label="close"
-            onClick={() => setParkingOpen(false)}
+            onClick={() => setGroupViewOpen(false)}
             sx={{
               position: "absolute",
               right: 8,
