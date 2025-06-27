@@ -359,3 +359,7 @@
 .course_modal_list_wrapper {
   border-bottom: 0.5px grey solid;
 }
+
+.admin_menuRow {
+  background-color: #fac656;
+}

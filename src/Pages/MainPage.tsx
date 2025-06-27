@@ -32,6 +32,7 @@ import HeadsetTwoToneIcon from "@mui/icons-material/HeadsetTwoTone";
 import AssistantTwoToneIcon from "@mui/icons-material/AssistantTwoTone";
 import MapTwoToneIcon from "@mui/icons-material/MapTwoTone";
 import DirectionsCarFilledTwoToneIcon from "@mui/icons-material/DirectionsCarFilledTwoTone";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 import parkingLocationImage from "../assets/parking_map.png";
 
@@ -344,92 +345,159 @@ export default function MainPage() {
           </Box>
         </Box>
       </Box>
-      {/* 광고 영역 */}
-      <Box sx={{ marginTop: "5vh" }}>
-        <Advertisement ad_id="outreach" />
-        <Advertisement ad_id="leader" />
-      </Box>
-      {/* 게시판 영역: 기도제목 */}
 
-      <Box
-        className="flex-left gap5"
-        sx={{
-          padding: "10px",
-          paddingLeft: 0,
-          marginTop: 3,
-          justifyContent: "space-between",
-          alignItems: "flex-end",
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <AssistantTwoToneIcon sx={{ color: "#FAC656", mr: 0.5 }} />
-          <Typography variant="body1">기도제목</Typography>
-        </Box>
-        <Typography
-          variant="toDetail"
-          onClick={() => {
-            navigation("/pray");
-          }}
-        >
-          more {">"}
-        </Typography>
-      </Box>
-      {isLoading.prayBoard ? (
-        <Skeleton
-          variant="rectangular"
-          className="boardPreview"
-          animation="wave"
-        />
-      ) : (
-        <Box className="boardPreview">
-          {prays.length > 0 ? (
-            prays.map((pray) => (
-              <Box
-                key={`pray_${pray.created_at}`}
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <Box sx={{ marginRight: 1 }}>
-                    <Typography variant="boardPreview_title">
-                      {pray.title}
-                    </Typography>
-                  </Box>
+      {/* 관리자 메뉴행 */}
+      {user.is_admin && (
+        <Box>
+          <Typography sx={{ mt: 2 }}>관리자 메뉴</Typography>
+          <Box
+            className="fullWidth flex-left horizontal_overflow admin_menuRow"
+            sx={{ mt: 1 }}
+          >
+            <Box
+              className="external-linkbox"
+              onClick={() => {
+                setGroupViewOpen(true);
+              }}
+            >
+              <Box className="external-icon centeralize">
+                <SettingsIcon sx={{ color: "#000" }} />
+              </Box>
+              <Box className="external_description_box">
+                <Typography variant="blacksmall_admin">환경</Typography>
+                <Typography variant="blacksmall_admin">설정</Typography>
+              </Box>
+            </Box>
+            <Box
+              className="external-linkbox"
+              onClick={() => {
+                navigation("/syllabus");
+              }}
+            >
+              <Box className="external-icon centeralize">
+                <ClassIcon sx={{ color: "#000" }} />
+              </Box>
+              <Box className="external_description_box">
+                <Typography variant="blacksmall_admin">수강</Typography>
+                <Typography variant="blacksmall_admin">현황</Typography>
+              </Box>
+            </Box>
+            <Box
+              className="external-linkbox"
+              onClick={() => {
+                navigation("/workbook");
+              }}
+            >
+              <Box className="external-icon centeralize">
+                <DocumentScannerIcon sx={{ color: "#000" }} />
+              </Box>
+              <Box className="external_description_box">
+                <Typography variant="blacksmall_admin">이수</Typography>
+                <Typography variant="blacksmall_admin">처리</Typography>
+              </Box>
+            </Box>
+            <Box
+              className="external-linkbox"
+              onClick={() => {
+                setTimetableOpen(true);
+              }}
+            >
+              <Box className="external-icon centeralize">
+                <ScheduleIcon sx={{ color: "#000" }} />
+              </Box>
+              <Box className="external_description_box">
+                <Typography variant="blacksmall_admin">게시글</Typography>
+                <Typography variant="blacksmall_admin">관리</Typography>
+              </Box>
+            </Box>
+          </Box>
+          {/* 광고 영역 */}
+          <Box sx={{ marginTop: "5vh" }}>
+            <Advertisement ad_id="outreach" />
+            <Advertisement ad_id="leader" />
+          </Box>
+          {/* 게시판 영역: 기도제목 */}
+          <Box
+            className="flex-left gap5"
+            sx={{
+              padding: "10px",
+              paddingLeft: 0,
+              marginTop: 3,
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+            }}
+          >
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <AssistantTwoToneIcon sx={{ color: "#FAC656", mr: 0.5 }} />
+              <Typography variant="body1">기도제목</Typography>
+            </Box>
+            <Typography
+              variant="toDetail"
+              onClick={() => {
+                navigation("/pray");
+              }}
+            >
+              more {">"}
+            </Typography>
+          </Box>
+          {isLoading.prayBoard ? (
+            <Skeleton
+              variant="rectangular"
+              className="boardPreview"
+              animation="wave"
+            />
+          ) : (
+            <Box className="boardPreview">
+              {prays.length > 0 ? (
+                prays.map((pray) => (
                   <Box
+                    key={`pray_${pray.created_at}`}
                     sx={{
                       display: "flex",
-                      alignItems: "center",
-                      maxWidth: "50%",
+                      justifyContent: "space-between",
                     }}
                   >
-                    <Typography variant="boardPreview_detail">
-                      {pray.content}
-                    </Typography>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <Box sx={{ marginRight: 1 }}>
+                        <Typography variant="boardPreview_title">
+                          {pray.title}
+                        </Typography>
+                      </Box>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          maxWidth: "50%",
+                        }}
+                      >
+                        <Typography variant="boardPreview_detail">
+                          {pray.content}
+                        </Typography>
+                      </Box>
+                    </Box>
+                    {users && (
+                      <Box sx={{ minWidth: "32px" }}>
+                        <Typography variant="boardPreview_author">
+                          {
+                            users.filter(
+                              (user) => user.student_id == pray.author_id
+                            )[0]?.name
+                          }
+                        </Typography>
+                      </Box>
+                    )}
                   </Box>
+                ))
+              ) : (
+                <Box
+                  className="fully_centeralize fullWidth"
+                  sx={{ height: "120px" }}
+                >
+                  <Typography variant="group_member">
+                    등록된 기도가 없습니다
+                  </Typography>
                 </Box>
-                {users && (
-                  <Box sx={{ minWidth: "32px" }}>
-                    <Typography variant="boardPreview_author">
-                      {
-                        users.filter(
-                          (user) => user.student_id == pray.author_id
-                        )[0]?.name
-                      }
-                    </Typography>
-                  </Box>
-                )}
-              </Box>
-            ))
-          ) : (
-            <Box
-              className="fully_centeralize fullWidth"
-              sx={{ height: "120px" }}
-            >
-              <Typography variant="group_member">
-                등록된 기도가 없습니다
-              </Typography>
+              )}
             </Box>
           )}
         </Box>

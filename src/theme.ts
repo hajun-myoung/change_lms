@@ -33,6 +33,7 @@ declare module "@mui/material/styles" {
     syllabus_detail_header: React.CSSProperties;
     syllabus_detail_paragraph: React.CSSProperties;
     pray_notice: React.CSSProperties;
+    blacksmall_admin: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -67,6 +68,7 @@ declare module "@mui/material/styles" {
     syllabus_detail_header: React.CSSProperties;
     syllabus_detail_paragraph: React.CSSProperties;
     pray_notice: React.CSSProperties;
+    blacksmall_admin: React.CSSProperties;
   }
 }
 
@@ -103,6 +105,7 @@ declare module "@mui/material/Typography" {
     syllabus_detail_header: true;
     syllabus_detail_paragraph: true;
     pray_notice: true;
+    blacksmall_admin: true;
   }
 }
 
@@ -194,6 +197,12 @@ const theme = createTheme({
     blacksmall: {
       fontSize: "14px",
       color: "#F5F5DC",
+      fontFamily: '"Pretendard", sans-serif',
+      lineHeight: "1.1",
+    },
+    blacksmall_admin: {
+      fontSize: "14px",
+      color: "#000",
       fontFamily: '"Pretendard", sans-serif',
       lineHeight: "1.1",
     },
