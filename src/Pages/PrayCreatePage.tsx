@@ -37,6 +37,7 @@ export default function PrayCreatePage() {
         styleOverrides: {
           input: {
             color: "#fff",
+            fontFamily: '"Pretendard", sans-serif',
           },
         },
       },
@@ -44,6 +45,7 @@ export default function PrayCreatePage() {
         styleOverrides: {
           root: {
             color: "#aaa",
+            fontFamily: '"Pretendard", sans-serif',
             "&.Mui-focused": {
               color: "#aaa",
             },
@@ -66,6 +68,7 @@ export default function PrayCreatePage() {
           },
           input: {
             color: "#fff",
+            fontFamily: '"Pretendard", sans-serif',
           },
         },
       },
@@ -73,6 +76,7 @@ export default function PrayCreatePage() {
         styleOverrides: {
           root: {
             color: "#999",
+            fontFamily: '"Pretendard", sans-serif',
             backgroundColor: "#222",
             "&.Mui-disabled": {
               color: "#666", //
