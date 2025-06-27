@@ -10,6 +10,8 @@ export interface Course {
   required: boolean;
   description: string;
   activities: Array<CourseActivityContent>;
+  professor: string;
+  summary: string;
 }
 
 interface AcquiredCourse {

@@ -245,7 +245,6 @@
 
 .boardPreview {
   width: 100%;
-
   background-color: #f5f5dc;
   border-radius: 10px;
   padding: 10px;
@@ -290,4 +289,33 @@
   bottom: 5px;
   display: flex;
   align-items: center;
+}
+
+.skeleton_style {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.course_preview {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 0.5px grey solid;
+  padding: 20px;
+  padding-top: 4px;
+  padding-bottom: 8px;
+  transition: background-color 0.4s ease, max-height 0.4s ease;
+  max-height: 100px;
+  box-sizing: border-box;
+}
+
+.course_focus {
+  background-color: rgba(250, 198, 86, 0.4);
+  max-height: 300px;
+}
+
+.course_detail_btn {
+  background-color: rgb(241, 42, 20);
+  display: flex;
+  padding: 4px 8px;
+  border-radius: 12px;
 }
