@@ -433,20 +433,6 @@ export default function MainPage() {
                 <Typography variant="blacksmall_admin">처리</Typography>
               </Box>
             </Box>
-            <Box
-              className="external-linkbox"
-              onClick={() => {
-                setTimetableOpen(true);
-              }}
-            >
-              <Box className="external-icon centeralize">
-                <ScheduleIcon sx={{ color: "#000" }} />
-              </Box>
-              <Box className="external_description_box">
-                <Typography variant="blacksmall_admin">게시글</Typography>
-                <Typography variant="blacksmall_admin">관리</Typography>
-              </Box>
-            </Box>
           </Box>
         </Box>
       )}
