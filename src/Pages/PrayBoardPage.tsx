@@ -10,6 +10,7 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import type { Pray, User } from "../types/Common";
 import Advertisement from "../Components/Advertisement";
@@ -21,6 +22,8 @@ export default function PrayBoardPage() {
   const [users, setUsers] = useState<Array<User>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  const navigation = useNavigate();
+
   useEffect(() => {
     const fetchPrays = async () => {
       setIsLoading(true);
@@ -31,7 +34,10 @@ export default function PrayBoardPage() {
       const querySnapshot = await getDocs(prayQuery);
 
       if (!querySnapshot.empty) {
-        const prays = querySnapshot.docs.map((pray) => pray.data() as Pray);
+        const prays = querySnapshot.docs.map((pray) => ({
+          ...(pray.data() as Pray),
+          id: pray.id,
+        }));
         setPrays(prays);
       } else {
         console.log("[Warning]No Prays");
@@ -78,7 +84,13 @@ export default function PrayBoardPage() {
         <Box className="fullWidth" sx={{ mt: 2 }}>
           {prays?.map((pray) => {
             return (
-              <Box key={`pray_${pray.created_at}`} className="boardCard">
+              <Box
+                key={`pray_${pray.created_at}`}
+                className="boardCard"
+                onClick={() => {
+                  navigation(`/pray/${pray.id}`);
+                }}
+              >
                 <Typography variant="boardTitle">{pray.title}</Typography>
                 <Typography variant="boardContent">{pray.content}</Typography>
                 <Box sx={{ mt: 1 }}>

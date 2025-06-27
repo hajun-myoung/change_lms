@@ -12,6 +12,7 @@ import CoursesPage from "./Pages/CoursesPage";
 import SyllabusPage from "./Pages/SyllabusPage";
 import SyllabusDetailPage from "./Pages/SyllabusDetailPage";
 import AnnouncementViewPage from "./Pages/AnnouncementViewPage";
+import PrayViewPage from "./Pages/PrayViewPage";
 
 function App() {
   return (
@@ -41,6 +42,14 @@ function App() {
               element={
                 <ProtectedRouter>
                   <PrayBoardPage />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/pray/:id"
+              element={
+                <ProtectedRouter>
+                  <PrayViewPage />
                 </ProtectedRouter>
               }
             />

@@ -3,6 +3,7 @@ export interface Pray {
   title: string;
   content: string;
   created_at: Timestamp;
+  id: string;
 }
 
 export interface User {
