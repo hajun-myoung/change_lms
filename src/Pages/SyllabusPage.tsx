@@ -82,7 +82,12 @@ export default function SyllabusPage() {
               </Box>
               {course.code === focus && (
                 <Box sx={{ pt: 1 }}>
-                  <Box className="course_detail_btn">
+                  <Box
+                    className="course_detail_btn"
+                    onClick={() => {
+                      navigation(`/syllabus/${course.code}`);
+                    }}
+                  >
                     <Typography variant="course_detail_btn_text">
                       자세히 보기
                     </Typography>

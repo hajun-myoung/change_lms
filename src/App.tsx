@@ -11,6 +11,7 @@ import PostViewPage from "./Pages/PostViewPage";
 import WorkbookPage from "./Pages/WorkbookPage";
 import CoursesPage from "./Pages/CoursesPage";
 import SyllabusPage from "./Pages/SyllabusPage";
+import SyllabusDetailPage from "./Pages/SyllabusDetailPage";
 
 function App() {
   return (
@@ -60,10 +61,18 @@ function App() {
               }
             />
             <Route
-              path="/syllabus"
+              path="/syllabus/"
               element={
                 <ProtectedRouter>
                   <SyllabusPage />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/syllabus/:id"
+              element={
+                <ProtectedRouter>
+                  <SyllabusDetailPage />
                 </ProtectedRouter>
               }
             />
