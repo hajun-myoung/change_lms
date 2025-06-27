@@ -305,7 +305,11 @@ export default function CoursesPage() {
                   )}
                   <ButtonBase
                     onClick={() => {
-                      handleCancelCourse(course.code);
+                      if (user.is_leader) {
+                        handleCancelCourse(course.code);
+                      } else {
+                        alert("수강취소는 조장만 가능합니다");
+                      }
                     }}
                   >
                     <CardContent className="courseCard">
@@ -340,7 +344,11 @@ export default function CoursesPage() {
           className="fullWidth fully_centeralize"
           sx={{ mt: 2 }}
           onClick={() => {
-            setModalOpen(true);
+            if (user.is_leader) {
+              setModalOpen(true);
+            } else {
+              alert("수강신청은 조장만 가능합니다");
+            }
           }}
         >
           <AddCircleIcon sx={{ mr: 1, color: "#FFF" }} />
