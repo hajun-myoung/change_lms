@@ -526,38 +526,46 @@ export default function MainPage() {
           </IconButton>
         </DialogTitle>
 
-        <Box sx={{ p: 2 }}>
-          <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-            <Typography variant="label" sx={{ mr: 1 }}>
-              리더
-            </Typography>
-            <Typography variant="group_member">
-              {
-                users.filter(
-                  (target) =>
-                    target.group_id == user.group_id && target.is_leader
-                )[0]?.name
-              }
-            </Typography>
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography className="label" variant="label" sx={{ mr: 1 }}>
-              멤버
-            </Typography>
-            <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-              {users
-                .filter(
-                  (target) =>
-                    target.group_id == user.group_id && !target.is_leader
-                )
-                .map((user) => (
-                  <Typography variant="group_member" sx={{ mr: 0.5 }}>
-                    {user.name}
-                  </Typography>
-                ))}
+        {user.group_id !== -1 ? (
+          <Box sx={{ p: 2 }}>
+            <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+              <Typography variant="label" sx={{ mr: 1 }}>
+                리더
+              </Typography>
+              <Typography variant="group_member">
+                {
+                  users.filter(
+                    (target) =>
+                      target.group_id == user.group_id && target.is_leader
+                  )[0]?.name
+                }
+              </Typography>
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Typography className="label" variant="label" sx={{ mr: 1 }}>
+                멤버
+              </Typography>
+              <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+                {users
+                  .filter(
+                    (target) =>
+                      target.group_id == user.group_id && !target.is_leader
+                  )
+                  .map((user) => (
+                    <Typography variant="group_member" sx={{ mr: 0.5 }}>
+                      {user.name}
+                    </Typography>
+                  ))}
+              </Box>
             </Box>
           </Box>
-        </Box>
+        ) : (
+          <Box sx={{ p: 2 }}>
+            <Typography variant="group_member" sx={{ mr: 0.5 }}>
+              배정된 조가 없습니다. 윤기헌 전도사님께 문의해주세요.
+            </Typography>
+          </Box>
+        )}
       </Dialog>
 
       {/* Version Indicator */}
