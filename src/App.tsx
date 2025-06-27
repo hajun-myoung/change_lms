@@ -10,6 +10,7 @@ import PrayBoardPage from "./Pages/PrayBoardPage";
 import PostViewPage from "./Pages/PostViewPage";
 import WorkbookPage from "./Pages/WorkbookPage";
 import CoursesPage from "./Pages/CoursesPage";
+import SyllabusPage from "./Pages/SyllabusPage";
 
 function App() {
   return (
@@ -55,6 +56,14 @@ function App() {
               element={
                 <ProtectedRouter>
                   <CoursesPage />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/syllabus"
+              element={
+                <ProtectedRouter>
+                  <SyllabusPage />
                 </ProtectedRouter>
               }
             />
