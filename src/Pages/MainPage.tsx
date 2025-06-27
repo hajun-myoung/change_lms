@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Header from "../Components/Header";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import {
   collection,
   query,
@@ -12,6 +12,7 @@ import {
   limit,
   doc,
   getDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Skeleton from "@mui/material/Skeleton";
@@ -43,6 +44,13 @@ import { TimetableContent } from "../Components/TimetableContent";
 import Advertisement from "../Components/Advertisement";
 
 import { useAuth } from "../Contexts/AuthContexts";
+import {
+  DialogActions,
+  DialogContent,
+  FormControlLabel,
+  FormGroup,
+  Switch,
+} from "@mui/material";
 
 export default function MainPage() {
   const [announcements, setAnnouncements] = useState<Array<Announcement>>([]);
@@ -61,6 +69,7 @@ export default function MainPage() {
   const [groupViewOpen, setGroupViewOpen] = useState<boolean>(false);
   const [timetableOpen, setTimetableOpen] = useState<boolean>(false);
   const [parkingOpen, setParkingOpen] = useState<boolean>(false);
+  const [settingOpen, setSettingOpen] = useState<boolean>(false);
 
   // User Context
   const { user } = useAuth();
@@ -132,6 +141,34 @@ export default function MainPage() {
     console.log(prays);
     console.log(prays.length);
   }, [prays]);
+
+  const handleSettingClose = () => {
+    setSettingOpen(false);
+  };
+
+  const handleToggle = (key: keyof Configure) => {
+    setConfigure((prev) => {
+      if (!prev) return prev;
+      return { ...prev, [key]: !prev[key] };
+    });
+  };
+
+  const handleSave = async () => {
+    const ref = doc(db, "configure", "global");
+    console.log(configure);
+    console.log(auth.currentUser?.uid);
+    await updateDoc(
+      ref,
+      configure
+        ? { ...configure }
+        : {
+            enable_course_apply: false,
+            enable_group_view: false,
+            enable_pray_write: false,
+          }
+    );
+    handleSettingClose();
+  };
 
   return (
     <Box className="wrapper">
@@ -357,7 +394,7 @@ export default function MainPage() {
             <Box
               className="external-linkbox"
               onClick={() => {
-                setGroupViewOpen(true);
+                setSettingOpen(true);
               }}
             >
               <Box className="external-icon centeralize">
@@ -635,7 +672,11 @@ export default function MainPage() {
                       target.group_id == user.group_id && !target.is_leader
                   )
                   .map((user) => (
-                    <Typography variant="group_member" sx={{ mr: 0.5 }}>
+                    <Typography
+                      key={`user_${user.name}`}
+                      variant="group_member"
+                      sx={{ mr: 0.5 }}
+                    >
                       {user.name}
                     </Typography>
                   ))}
@@ -649,6 +690,48 @@ export default function MainPage() {
             </Typography>
           </Box>
         )}
+      </Dialog>
+
+      {/* 관리자 환경설정 모달 */}
+      <Dialog open={settingOpen} onClose={handleSettingClose}>
+        <DialogTitle>환경 설정</DialogTitle>
+        <DialogContent>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={configure?.enable_group_view}
+                  onChange={() => handleToggle("enable_group_view")}
+                />
+              }
+              label="조 구성 확인 허용"
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={configure?.enable_pray_write}
+                  onChange={() => handleToggle("enable_pray_write")}
+                />
+              }
+              label="기도제목 글쓰기 허용"
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={configure?.enable_course_apply}
+                  onChange={() => handleToggle("enable_course_apply")}
+                />
+              }
+              label="수강신청 허용"
+            />
+          </FormGroup>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleSettingClose}>취소</Button>
+          <Button onClick={handleSave} variant="contained">
+            저장
+          </Button>
+        </DialogActions>
       </Dialog>
 
       {/* Version Indicator */}
