@@ -7,11 +7,11 @@ import ProtectedRouter from "./Components/ProtectedRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import PrayBoardPage from "./Pages/PrayBoardPage";
-import PostViewPage from "./Pages/PostViewPage";
 import WorkbookPage from "./Pages/WorkbookPage";
 import CoursesPage from "./Pages/CoursesPage";
 import SyllabusPage from "./Pages/SyllabusPage";
 import SyllabusDetailPage from "./Pages/SyllabusDetailPage";
+import AnnouncementViewPage from "./Pages/AnnouncementViewPage";
 
 function App() {
   return (
@@ -29,18 +29,18 @@ function App() {
               }
             />
             <Route
-              path="/pray"
+              path="/announcement/:id"
               element={
                 <ProtectedRouter>
-                  <PrayBoardPage />
+                  <AnnouncementViewPage />
                 </ProtectedRouter>
               }
             />
             <Route
-              path="/post"
+              path="/pray"
               element={
                 <ProtectedRouter>
-                  <PostViewPage />
+                  <PrayBoardPage />
                 </ProtectedRouter>
               }
             />

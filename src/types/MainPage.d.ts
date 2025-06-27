@@ -6,6 +6,8 @@ export interface Announcement {
   active: boolean;
   created_at: Timestamp;
   is_updated: boolean;
+  id: string;
+  author: string;
 }
 
 export interface LoadingState {

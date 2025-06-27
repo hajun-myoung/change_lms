@@ -75,9 +75,10 @@ export default function MainPage() {
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
-        const docs = querySnapshot.docs.map(
-          (doc) => doc.data() as Announcement
-        );
+        const docs = querySnapshot.docs.map((doc) => ({
+          ...(doc.data() as Announcement),
+          id: doc.id,
+        }));
         setAnnouncements(docs);
       } else {
         console.log("[Warning]No accouncements has been queried");
@@ -159,7 +160,7 @@ export default function MainPage() {
                     justifyContent: "flex-start",
                   }}
                   onClick={() => {
-                    alert("아직 준비되지 않은 기능입니다");
+                    navigation(`/announcement/${doc.id}`);
                   }} // 클릭 핸들러
                 >
                   자세히 {">"}
