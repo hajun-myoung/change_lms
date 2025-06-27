@@ -17,7 +17,8 @@ import { useEffect, useState } from "react";
 import type { Announcement } from "../types/MainPage";
 
 import CampaignIcon from "@mui/icons-material/Campaign";
-import type { Pray, User } from "../types/Common";
+import type { User } from "../types/Common";
+import { Skeleton } from "@mui/material";
 
 export default function AnnouncementViewPage() {
   const { id } = useParams<{ id: string }>();
@@ -88,6 +89,14 @@ export default function AnnouncementViewPage() {
   return (
     <Box className="wrapper">
       <Header subtitle={"공지사항"} />
+      {isLoading && (
+        <Skeleton
+          variant="rectangular"
+          className="boardPreview skeleton_style"
+          animation="wave"
+          sx={{ height: "200px" }}
+        />
+      )}
       <Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Box
