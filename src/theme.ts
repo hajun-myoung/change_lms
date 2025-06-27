@@ -32,6 +32,7 @@ declare module "@mui/material/styles" {
     course_detail_title: React.CSSProperties;
     syllabus_detail_header: React.CSSProperties;
     syllabus_detail_paragraph: React.CSSProperties;
+    pray_notice: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -65,6 +66,7 @@ declare module "@mui/material/styles" {
     course_detail_title: React.CSSProperties;
     syllabus_detail_header: React.CSSProperties;
     syllabus_detail_paragraph: React.CSSProperties;
+    pray_notice: React.CSSProperties;
   }
 }
 
@@ -100,6 +102,7 @@ declare module "@mui/material/Typography" {
     course_detail_title: true;
     syllabus_detail_header: true;
     syllabus_detail_paragraph: true;
+    pray_notice: true;
   }
 }
 
@@ -373,6 +376,13 @@ const theme = createTheme({
     syllabus_detail_paragraph: {
       color: "#FFF",
       fontSize: 14,
+      fontFamily: '"Pretendard", sans-serif',
+      fontWeight: 400,
+      textAlign: "left",
+    },
+    pray_notice: {
+      color: "gray",
+      fontSize: 12,
       fontFamily: '"Pretendard", sans-serif',
       fontWeight: 400,
       textAlign: "left",
