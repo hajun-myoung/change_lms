@@ -408,7 +408,7 @@ export default function MainPage() {
             <Box
               className="external-linkbox"
               onClick={() => {
-                navigation("/syllabus");
+                navigation("/course_status");
               }}
             >
               <Box className="external-icon centeralize">

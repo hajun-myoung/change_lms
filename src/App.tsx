@@ -14,6 +14,7 @@ import SyllabusDetailPage from "./Pages/SyllabusDetailPage";
 import AnnouncementViewPage from "./Pages/AnnouncementViewPage";
 import PrayViewPage from "./Pages/PrayViewPage";
 import PrayCreatePage from "./Pages/PrayCreatePage";
+import CourseStatusPage from "./Pages/CourseStatusPage";
 
 function App() {
   return (
@@ -91,6 +92,14 @@ function App() {
               element={
                 <ProtectedRouter>
                   <SyllabusDetailPage />
+                </ProtectedRouter>
+              }
+            />
+            <Route
+              path="/course_status"
+              element={
+                <ProtectedRouter>
+                  <CourseStatusPage />
                 </ProtectedRouter>
               }
             />
