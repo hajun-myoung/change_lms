@@ -540,10 +540,10 @@ export default function MainPage() {
             </Typography>
           </Box>
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography variant="label" sx={{ mr: 1 }}>
+            <Typography className="label" variant="label" sx={{ mr: 1 }}>
               멤버
             </Typography>
-            <Box sx={{ display: "flex" }}>
+            <Box sx={{ display: "flex", flexWrap: "wrap" }}>
               {users
                 .filter(
                   (target) =>

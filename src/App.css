@@ -345,3 +345,7 @@
   align-items: flex-start;
   margin-bottom: 8px;
 }
+
+.label {
+  min-width: 28px;
+}
