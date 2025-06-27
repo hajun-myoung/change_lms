@@ -29,6 +29,7 @@ declare module "@mui/material/styles" {
     course_title: React.CSSProperties;
     course_info: React.CSSProperties;
     course_detail_btn_text: React.CSSProperties;
+    course_detail_title: React.CSSProperties;
   }
 
   interface TypographyVariantsOptions {
@@ -59,6 +60,7 @@ declare module "@mui/material/styles" {
     course_title: React.CSSProperties;
     course_info: React.CSSProperties;
     course_detail_btn_text: React.CSSProperties;
+    course_detail_title: React.CSSProperties;
   }
 }
 
@@ -91,6 +93,7 @@ declare module "@mui/material/Typography" {
     course_title: true;
     course_info: true;
     course_detail_btn_text: true;
+    course_detail_title: true;
   }
 }
 
@@ -334,6 +337,12 @@ const theme = createTheme({
       fontSize: 12,
       fontFamily: '"Pretendard", sans-serif',
       fontWeight: 400,
+    },
+    course_detail_title: {
+      color: "#FFF",
+      fontSize: 16,
+      fontFamily: '"Pretendard", sans-serif',
+      fontWeight: 600,
     },
   },
 });
