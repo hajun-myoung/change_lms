@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { TextField, Button, Box, Typography } from "@mui/material";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
+import { signInAnonymously } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { useAuth } from "../Contexts/AuthContexts";
 
@@ -12,23 +13,34 @@ export default function SigninPage() {
 
   const handleSignin = async () => {
     setIsLoading(true);
-    const q = query(
-      collection(db, "users"),
-      where("student_id", "==", studentId)
-    );
-    const querySnapshot = await getDocs(q);
+    setError("");
 
-    if (!querySnapshot.empty) {
+    try {
+      const q = query(
+        collection(db, "users"),
+        where("student_id", "==", studentId)
+      );
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+        setError("존재하지 않는 학번입니다");
+        setIsLoading(false);
+        return;
+      }
+
       const userData = querySnapshot.docs[0].data();
-      console.log(userData);
+
+      await signInAnonymously(auth);
       setUser(userData);
-      localStorage.setItem("user", JSON.stringify(userData)); // for refresh
+      localStorage.setItem("user", JSON.stringify(userData));
 
       window.location.href = "/";
-    } else {
-      setError("존재하지 않는 학번입니다.");
+    } catch (e) {
+      console.error(e);
+      setError("로그인 중 오류가 발생했습니다");
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
